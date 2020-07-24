@@ -11,8 +11,10 @@
   "author": "@RisingGeek",
   "license": "ISC",
   "dependencies": {
+    "antd": "^4.4.3",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
