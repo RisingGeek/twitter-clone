@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Home from './components/home/index';
+import Routes from './routes';
 
 function App() {
     return (
         <React.Fragment>
-            <Home />
+            <Routes />
         </React.Fragment>
     );
 };
