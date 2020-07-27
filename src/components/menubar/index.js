@@ -19,8 +19,8 @@ const MenuBar = () => {
 
     return (
         <Row>
-            <Col span={9}></Col>
-            <Col span={15}>
+            <Col xl={9} lg={0}></Col>
+            <Col xl={15} lg={24}>
                 <Header>
                     <MenuItem logo>
                         <div>

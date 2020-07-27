@@ -1,10 +1,12 @@
+import {SET_USER} from '../actions';
+
 const initialState = {
     user: {}
 };
 
 const profile = (state = initialState, action) => {
     switch (action.type) {
-        case "SET_USER":
+        case SET_USER:
             return {
                 ...state,
                 user: action.payload

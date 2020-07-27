@@ -37,6 +37,9 @@ export const MenuTitle = styled.span`
     font-weight: bold;
     line-height: 1.3;
     text-transform: capitalize;
+    @media(max-width: 768px) {
+        display: none;
+    }
 `;
 
 export const Button = styled.button`
