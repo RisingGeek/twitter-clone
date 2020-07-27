@@ -14,7 +14,7 @@ export const Header = styled.header`
 `;
 
 export const MenuItem = styled.div`
-    ${props => props.logo && {display: "inline-block"}};
+    ${props => props.logo && { display: "inline-block" }};
     margin-top: 10px;
     color: #000000;
 
@@ -43,7 +43,8 @@ export const MenuTitle = styled.span`
 `;
 
 export const Button = styled.button`
-    width: 100%;
+    width: ${props => props.width};
+    height: ${props => props.height};
     background: rgba(29,161,242,1.00);
     border: none;
     border-radius: 50px;
@@ -51,7 +52,7 @@ export const Button = styled.button`
     font-weight: bold;
     color: #ffffff;
     text-align: center;
-    padding: 12px 30px;
+    padding: ${props => props.padding};
     &:hover {
         background: rgb(26,145,218);
     }

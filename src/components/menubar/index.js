@@ -41,7 +41,11 @@ const MenuBar = () => {
                             )
                         })
                     }
-                    <Button>Tweet</Button>
+                    {
+                        window.innerWidth > 768 ? <Button width="100%" height="100%" padding="12px 30px">Tweet</Button> : 
+                        <Button width="40px" height="40px" padding="0">+</Button>
+                    }
+                    
 
                 </Header>
             </Col>

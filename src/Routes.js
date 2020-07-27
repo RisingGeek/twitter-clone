@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Row, Col } from 'antd';
-import MenuBar from './components/menubar/index';
-import SignIn from './components/signin/index';
-import Home from './components/home/index';
-import Explore from './components/explore/index';
-import Notifications from './components/notifications/index';
-import Messages from './components/messages/index';
-import BookMarks from './components/bookmarks/index';
-import Lists from './components/lists/index';
-import Profile from './components/profile/index';
+const MenuBar = React.lazy(() => import('./components/menubar/index'));
+const SignIn = React.lazy(() => import('./components/signin/index'));
+const Home = React.lazy(() => import('./components/home/index'));
+const Explore = React.lazy(() => import('./components/explore/index'));
+const Notifications = React.lazy(() => import('./components/notifications/index'));
+const Messages = React.lazy(() => import('./components/messages/index'));
+const BookMarks = React.lazy(() => import('./components/bookmarks/index'));
+const Lists = React.lazy(() => import('./components/lists/index'));
+const Profile = React.lazy(() => import('./components/profile/index'));
 
 const Routes = () => {
 

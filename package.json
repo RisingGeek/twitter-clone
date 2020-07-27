@@ -20,6 +20,7 @@
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-form": "^8.3.6",
+    "redux-persist": "^6.0.0",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
