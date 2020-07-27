@@ -4,8 +4,8 @@ import { Form, Button, Error } from '../styles/signin';
 
 const validate = data => {
     const errors = {};
-    if (!data.username)
-        errors.username = 'Username/Email required';
+    if (!data.user)
+        errors.user = 'Username/Email required';
     if (!data.password)
         errors.password = 'Password required';
     else if(data.password.length < 8)
@@ -30,7 +30,7 @@ let LoginForm = props => {
         <form onSubmit={props.handleSubmit}>
             <Form>
                 <div>
-                    <Field type="text" name="username" component={Input} placeholder="Username or email" />
+                    <Field type="text" name="user" component={Input} placeholder="Username or email" />
                 </div>
                 <div>
                     <Field type="password" name="password" component={Input} placeholder="password" />

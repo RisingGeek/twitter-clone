@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^4.4.3",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
