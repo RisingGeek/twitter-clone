@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const Header = styled.header`
     padding-left: 10px;
     padding-right: 10px;
-
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     .selected {
         .active {
             fill: rgba(29,161,242,1.00);

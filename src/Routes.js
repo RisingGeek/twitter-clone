@@ -10,18 +10,20 @@ const Messages = React.lazy(() => import('./components/messages/index'));
 const BookMarks = React.lazy(() => import('./components/bookmarks/index'));
 const Lists = React.lazy(() => import('./components/lists/index'));
 const Profile = React.lazy(() => import('./components/profile/index'));
+const Following = React.lazy(() => import('./components/following/index'));
+const Followers = React.lazy(() => import('./components/followers/index'));
 
 const Routes = () => {
 
-    const withMenuBar = WrappedComponent => () => (
+    const withMenuBar = WrappedComponent => (props) => (
         <Row>
-            <Col span={6}>
+            <Col md={6} xs={5}>
                 <MenuBar />
             </Col>
-            <Col span={11}>
+            <Col md={11} xs={19}>
                 <WrappedComponent />
             </Col>
-            <Col span={7}>
+            <Col md={7} xs={0}>
                 side bar
             </Col>
         </Row >
@@ -37,7 +39,9 @@ const Routes = () => {
                 <Route path="/messages" component={withMenuBar(Messages)} />
                 <Route path="/bookmarks" component={withMenuBar(BookMarks)} />
                 <Route path="/lists" component={withMenuBar(Lists)} />
-                <Route path="/profile" component={withMenuBar(Profile)} />
+                <Route exact path="/profile/:username" component={withMenuBar(Profile)} />
+                <Route path="/profile/:username/following" component={withMenuBar(Following)} />
+                <Route path="/profile/:username/followers" component={withMenuBar(Followers)} />
             </Switch>
         </BrowserRouter>
     );
