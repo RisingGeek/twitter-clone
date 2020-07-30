@@ -6,6 +6,7 @@ import Icon from "../icon";
 import ProfileHeader from "../profileHeader";
 import Tabs from "../tabs";
 import Follow from "../follow/index";
+import Activity from "./activity";
 import {
   ProfileCorner,
   Info,
@@ -43,9 +44,9 @@ const Profile = (props) => {
   ];
   const tabList = [
     {
-      name: "tweet",
-      title: "Tweet",
-      path: "/tweet",
+      name: "tweets",
+      title: "Tweets",
+      path: undefined,
     },
     {
       name: "media",
@@ -60,6 +61,24 @@ const Profile = (props) => {
   ];
 
   if (key === "followers" || key === "following") return <Follow />;
+
+  const renderTab = () => {
+    switch (key) {
+      case undefined:
+        return <div>tweet</div>;
+      case "media":
+        return <div>media</div>;
+      case "likes":
+        return (
+          <div>
+            <Activity
+              url={`${URL}/user/get-likes?userId=${user.id}`}
+              dataKey="tweets"
+            />
+          </div>
+        );
+    }
+  };
 
   return (
     <ProfileCorner>
@@ -111,6 +130,7 @@ const Profile = (props) => {
         <Follower user={user} />
       </Info>
       <Tabs tabList={tabList} />
+      {renderTab()}
     </ProfileCorner>
   );
 };

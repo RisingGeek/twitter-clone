@@ -17,13 +17,13 @@ const Follow = React.lazy(() => import("./components/follow/index"));
 const Routes = () => {
   const withMenuBar = (WrappedComponent) => (props) => (
     <Row>
-      <Col md={6} xs={5}>
+      <Col md={7} xs={5}>
         <MenuBar />
       </Col>
-      <Col md={11} xs={19}>
+      <Col md={9} xs={19}>
         <WrappedComponent />
       </Col>
-      <Col md={7} xs={0}>
+      <Col md={8} xs={0}>
         side bar
       </Col>
     </Row>

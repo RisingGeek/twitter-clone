@@ -15,7 +15,7 @@ const Tabs = (props) => {
     <Tab>
       {tabList.map((tab) => {
         const to =
-          tab.name === "tweet"
+          tab.name === "tweets"
             ? `/profile/${username}`
             : `/profile/${username}${tab.path}`;
         return (
@@ -23,7 +23,7 @@ const Tabs = (props) => {
             key={tab.name}
             to={to}
             style={
-              key === tab.name || (key == undefined && tab.name === "tweet")
+              key === tab.name || (key == undefined && tab.name === "tweets")
                 ? activeStyle
                 : {}
             }

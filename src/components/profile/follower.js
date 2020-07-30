@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { FollowFlex } from "../styles/profile";
 
@@ -7,8 +7,7 @@ const URL = process.env.REACT_APP_SERVER_URL;
 
 const Follower = (props) => {
   const { user } = props;
-  const history = useHistory();
-  const location = useLocation();
+  const {username} = useParams();
   const [response, setResponse] = useState(null);
   useEffect(() => {
     // ComponentDidMount
@@ -26,14 +25,14 @@ const Follower = (props) => {
   return (
     <FollowFlex>
       <div>
-        <Link to={`${location.pathname}/following`}>
+        <Link to={`/profile/${username}/following`}>
           <p>
             <span>{response.following.length}</span> <span>Following</span>
           </p>
         </Link>
       </div>
       <div>
-        <Link to={`${location.pathname}/followers`}>
+        <Link to={`/profile/${username}/followers`}>
           <p>
             <span>{response.followers.length}</span> <span>Followers</span>
           </p>

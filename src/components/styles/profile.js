@@ -136,6 +136,70 @@ export const Button = styled.button`
   padding: 1% 3%;
   cursor: pointer;
   &:hover {
-    background: rgb(26, 145, 218, 0.1);
+    background: rgba(26, 145, 218, 0.1);
+  }
+`;
+
+export const PeopleFlex = styled.div`
+  display: flex;
+  padding: 10px 15px;
+  color: rgb(0,0,0);
+  border-bottom: 1px solid lightgray;
+  img {
+    width: 49px;
+    height: 49px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  &:hover {
+    background-color: rgb(245, 248, 250);
+  }
+`;
+
+export const PeopleDetails = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  h3 {
+    font-size:15px;
+    font-weight: 700;
+  }
+  h3:hover {
+    text-decoration: underline;
+  }
+  p {
+    color: rgb(101, 119, 134);
+    font-weight:400;
+    font-size: 15px;
+  }
+  h3,
+  p {
+    margin: 0;
+    line-height: 1.23;
+  }
+`;
+
+export const TweetDetails = styled.div`
+  display: flex;
+  h3 {
+    font-size:15px;
+    font-weight: 700;
+    margin: 0;
+    margin-right: 2px;
+  }
+  p {
+    margin: 0;
+    margin-right: 8px;
+  }
+  h3:hover {
+    text-decoration: underline;
+  }
+  p, span {
+    color: rgb(101, 119, 134);
+    font-weight:400;
+    font-size: 15px;
+  }
+  &:hover {
+    background-color: rgb(245, 248, 250);
   }
 `;

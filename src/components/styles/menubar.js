@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Header = styled.header`
     padding-left: 10px;
     padding-right: 10px;
-    width: 80%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
     .selected {
@@ -12,6 +12,9 @@ export const Header = styled.header`
             color: rgba(29,161,242,1.00);
             border-radius: 50px;
         }
+    }
+    @media(max-width: 768px) {
+        width: 100%;
     }
 `;
 

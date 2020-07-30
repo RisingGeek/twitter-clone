@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ProfileHeader from "../profileHeader";
 import Tabs from "../tabs";
-import { ProfileCorner } from "../styles/profile";
+import { ProfileCorner, PeopleFlex, PeopleDetails } from "../styles/profile";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
 const Follow = () => {
   const [userData, setUserData] = useState(null);
-  const { username, follow } = useParams();
+  const { username, key } = useParams();
   useEffect(() => {
     // ComponentDidMount
     (async () => {
@@ -37,15 +37,44 @@ const Follow = () => {
       path: "/following",
     },
   ];
+
   return (
     <ProfileCorner>
       <ProfileHeader user={userData.user} text={`@${userData.user.username}`} />
       <Tabs tabList={tabList} />
-      {/*<div>
-        {userData[follow].map((item) => (
-          <div key={item.id}>{item.username}</div>
+      <div>
+        {userData[key].map((item) => (
+          <Link key={item.id} to={`/profile/${item.username}`}>
+            <PeopleFlex key={item.id}>
+              <div>
+                <img src={item.avatar} />
+              </div>
+              <div style={{ width: "100%" }}>
+                <PeopleDetails>
+                  <div>
+                    <object>
+                      <Link to={`/profile/${item.username}`}>
+                        <h3>
+                          {item.firstname} {item.lastname}
+                        </h3>
+                      </Link>
+                    </object>
+                    <object>
+                      <Link to={`/profile/${item.username}`}>
+                        <p>@{item.username}</p>
+                      </Link>
+                    </object>
+                  </div>
+                  {/* <div>Following</div> */}
+                </PeopleDetails>
+                <div>
+                  <p>{item.bio}</p>
+                </div>
+              </div>
+            </PeopleFlex>
+          </Link>
         ))}
-      </div> */}
+      </div>
     </ProfileCorner>
   );
 };
