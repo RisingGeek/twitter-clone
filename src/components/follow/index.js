@@ -3,13 +3,18 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import ProfileHeader from "../profileHeader";
 import Tabs from "../tabs";
-import { ProfileCorner, PeopleFlex, PeopleDetails } from "../styles/profile";
+import {
+  ProfileCorner,
+  PeopleFlex,
+  PeopleDetails,
+  EmptyMsg,
+} from "../styles/profile";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
 const Follow = () => {
   const [userData, setUserData] = useState(null);
-  const { username, key } = useParams();
+  const { username, activity } = useParams();
   useEffect(() => {
     // ComponentDidMount
     (async () => {
@@ -22,8 +27,6 @@ const Follow = () => {
       });
     })();
   }, []);
-
-  if (!userData) return <div>Loading...</div>;
 
   const tabList = [
     {
@@ -38,43 +41,53 @@ const Follow = () => {
     },
   ];
 
+  if (!userData) return <div>Loading...</div>;
+  
   return (
     <ProfileCorner>
       <ProfileHeader user={userData.user} text={`@${userData.user.username}`} />
       <Tabs tabList={tabList} />
-      <div>
-        {userData[key].map((item) => (
-          <Link key={item.id} to={`/profile/${item.username}`}>
-            <PeopleFlex key={item.id}>
-              <div>
-                <img src={item.avatar} />
-              </div>
-              <div style={{ width: "100%" }}>
-                <PeopleDetails>
-                  <div>
-                    <object>
-                      <Link to={`/profile/${item.username}`}>
-                        <h3>
-                          {item.firstname} {item.lastname}
-                        </h3>
-                      </Link>
-                    </object>
-                    <object>
-                      <Link to={`/profile/${item.username}`}>
-                        <p>@{item.username}</p>
-                      </Link>
-                    </object>
-                  </div>
-                  {/* <div>Following</div> */}
-                </PeopleDetails>
+      {!userData[activity].length ? (
+        <EmptyMsg>
+          {activity === "following"
+            ? `@${username} doesn't follow anyone!`
+            : `@${username} has no followers!`}
+        </EmptyMsg>
+      ) : (
+        <div>
+          {userData[activity].map((item) => (
+            <Link key={item.id} to={`/profile/${item.username}`}>
+              <PeopleFlex key={item.id}>
                 <div>
-                  <p>{item.bio}</p>
+                  <img src={item.avatar} />
                 </div>
-              </div>
-            </PeopleFlex>
-          </Link>
-        ))}
-      </div>
+                <div style={{ width: "100%" }}>
+                  <PeopleDetails>
+                    <div>
+                      <object>
+                        <Link to={`/profile/${item.username}`}>
+                          <h3>
+                            {item.firstname} {item.lastname}
+                          </h3>
+                        </Link>
+                      </object>
+                      <object>
+                        <Link to={`/profile/${item.username}`}>
+                          <p>@{item.username}</p>
+                        </Link>
+                      </object>
+                    </div>
+                    {/* <div>Following</div> */}
+                  </PeopleDetails>
+                  <div>
+                    <p>{item.bio}</p>
+                  </div>
+                </div>
+              </PeopleFlex>
+            </Link>
+          ))}
+        </div>
+      )}
     </ProfileCorner>
   );
 };

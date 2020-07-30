@@ -5,7 +5,7 @@ import { Tab } from "./styles/profile";
 const Tabs = (props) => {
   // TabList -> [{path,name,title}]
   const { tabList } = props;
-  const { username, key } = useParams();
+  const { username, activity } = useParams();
   const activeStyle = {
     borderBottom: "2px solid rgb(29,161,242)",
     color: "rgb(29,161,242)",
@@ -22,8 +22,9 @@ const Tabs = (props) => {
           <Link
             key={tab.name}
             to={to}
+            replace={true}
             style={
-              key === tab.name || (key == undefined && tab.name === "tweets")
+              activity === tab.name || (activity == undefined && tab.name === "tweets")
                 ? activeStyle
                 : {}
             }

@@ -15,21 +15,20 @@ import {
   Avatar,
   ImgFlex,
   Button,
-  Tab,
 } from "../styles/profile";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
 const Profile = (props) => {
   const [user, setUser] = useState(null);
-  const { username, key } = useParams();
+  const { username, activity } = useParams();
 
   useEffect(() => {
     (async () => {
       const res = await axios.get(`${URL}/user/get-user?username=${username}`);
       setUser(res.data);
     })();
-  }, []);
+  }, [username]);
 
   if (user === null) return <div>Loading...</div>;
 
@@ -60,12 +59,19 @@ const Profile = (props) => {
     },
   ];
 
-  if (key === "followers" || key === "following") return <Follow />;
+  if (activity === "followers" || activity === "following") return <Follow />;
 
   const renderTab = () => {
-    switch (key) {
+    switch (activity) {
       case undefined:
-        return <div>tweet</div>;
+        return (
+          <div>
+            <Activity
+              url={`${URL}/user/get-tweets?userId=${user.id}`}
+              dataKey="tweets"
+            />
+          </div>
+        );
       case "media":
         return <div>media</div>;
       case "likes":
@@ -73,7 +79,7 @@ const Profile = (props) => {
           <div>
             <Activity
               url={`${URL}/user/get-likes?userId=${user.id}`}
-              dataKey="tweets"
+              dataKey="likes"
             />
           </div>
         );

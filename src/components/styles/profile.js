@@ -4,6 +4,14 @@ export const ProfileCorner = styled.div`
   border-left: 1px solid lightgray;
   border-right: 1px solid lightgray;
   min-height: 100vh;
+  padding-bottom: 20%;
+`;
+
+export const HeaderWrapper = styled.div`
+  position: sticky;
+  background-color: white;
+  top: 0;
+  border-bottom: 1px solid lightgray;
 `;
 
 export const Header = styled.header`
@@ -134,6 +142,7 @@ export const Button = styled.button`
   color: rgb(29, 161, 242);
   text-align: center;
   padding: 1% 3%;
+  outline: none;
   cursor: pointer;
   &:hover {
     background: rgba(26, 145, 218, 0.1);
@@ -143,7 +152,7 @@ export const Button = styled.button`
 export const PeopleFlex = styled.div`
   display: flex;
   padding: 10px 15px;
-  color: rgb(0,0,0);
+  color: rgb(0, 0, 0);
   border-bottom: 1px solid lightgray;
   img {
     width: 49px;
@@ -161,7 +170,7 @@ export const PeopleDetails = styled.div`
   justify-content: space-between;
   align-items: baseline;
   h3 {
-    font-size:15px;
+    font-size: 15px;
     font-weight: 700;
   }
   h3:hover {
@@ -169,7 +178,7 @@ export const PeopleDetails = styled.div`
   }
   p {
     color: rgb(101, 119, 134);
-    font-weight:400;
+    font-weight: 400;
     font-size: 15px;
   }
   h3,
@@ -182,7 +191,7 @@ export const PeopleDetails = styled.div`
 export const TweetDetails = styled.div`
   display: flex;
   h3 {
-    font-size:15px;
+    font-size: 15px;
     font-weight: 700;
     margin: 0;
     margin-right: 2px;
@@ -194,12 +203,19 @@ export const TweetDetails = styled.div`
   h3:hover {
     text-decoration: underline;
   }
-  p, span {
+  p,
+  span {
     color: rgb(101, 119, 134);
-    font-weight:400;
+    font-weight: 400;
     font-size: 15px;
   }
   &:hover {
     background-color: rgb(245, 248, 250);
   }
+`;
+
+export const EmptyMsg = styled.div`
+  text-align: center;
+  color: rgb(101, 119, 134);
+  margin-top: 4px;
 `;

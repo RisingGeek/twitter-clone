@@ -45,7 +45,7 @@ const Routes = () => {
           component={withMenuBar(Profile)}
         />
         <Route
-          path="/profile/:username/:key"
+          path="/profile/:username/:activity"
           component={withMenuBar(Profile)}
         />
       </Switch>
