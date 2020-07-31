@@ -12,7 +12,7 @@ const Messages = React.lazy(() => import("./components/messages/index"));
 const BookMarks = React.lazy(() => import("./components/bookmarks/index"));
 const Lists = React.lazy(() => import("./components/lists/index"));
 const Profile = React.lazy(() => import("./components/profile/index"));
-const Follow = React.lazy(() => import("./components/follow/index"));
+const Tweet = React.lazy(() => import("./components/tweet/index"));
 
 const Routes = () => {
   const withMenuBar = (WrappedComponent) => (props) => (
@@ -47,6 +47,10 @@ const Routes = () => {
         <Route
           path="/profile/:username/:activity"
           component={withMenuBar(Profile)}
+        />
+        <Route
+          path="/:username/status/:tweetId"
+          component={withMenuBar(Tweet)}
         />
       </Switch>
     </BrowserRouter>

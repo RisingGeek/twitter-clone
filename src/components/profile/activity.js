@@ -38,7 +38,7 @@ if(!tweets.length) return <EmptyMsg>@{username} has no {dataKey} yet!</EmptyMsg>
         key={tweet["Tweets.id"]}
         to={`/${tweet.username}/status/${tweet["Tweets.id"]}`}
       >
-        <PeopleFlex>
+        <PeopleFlex hover>
           <div>
             <img src={tweet.avatar} />
           </div>

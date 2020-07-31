@@ -62,6 +62,7 @@ const Profile = (props) => {
   if (activity === "followers" || activity === "following") return <Follow />;
 
   const renderTab = () => {
+    // undefined -> tweet
     switch (activity) {
       case undefined:
         return (
@@ -88,7 +89,10 @@ const Profile = (props) => {
 
   return (
     <ProfileCorner>
-      <ProfileHeader user={user} text="9 tweets" />
+      <ProfileHeader
+        heading={`${user.firstname} ${user.lastname}`}
+        text="9 tweets"
+      />
       <div>
         <Cover></Cover>
         <ImgFlex>

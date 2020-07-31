@@ -17,8 +17,7 @@ export const HeaderWrapper = styled.div`
 export const Header = styled.header`
   display: flex;
   align-items: center;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 10px 15px;
   div {
     margin-right: 10px;
   }
@@ -31,6 +30,7 @@ export const Header = styled.header`
   p {
     color: rgb(101, 119, 134);
     font-size: 13px;
+    margin-bottom: 0;
   }
 `;
 
@@ -151,7 +151,7 @@ export const Button = styled.button`
 
 export const PeopleFlex = styled.div`
   display: flex;
-  padding: 10px 15px;
+  padding: ${props => props.padding ? props.padding : '10px 15px'};
   color: rgb(0, 0, 0);
   border-bottom: 1px solid lightgray;
   img {
@@ -161,7 +161,7 @@ export const PeopleFlex = styled.div`
     margin-right: 10px;
   }
   &:hover {
-    background-color: rgb(245, 248, 250);
+    background-color: ${props => props.hover && 'rgb(245, 248, 250);'}
   }
 `;
 
@@ -208,9 +208,6 @@ export const TweetDetails = styled.div`
     color: rgb(101, 119, 134);
     font-weight: 400;
     font-size: 15px;
-  }
-  &:hover {
-    background-color: rgb(245, 248, 250);
   }
 `;
 

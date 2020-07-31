@@ -42,10 +42,13 @@ const Follow = () => {
   ];
 
   if (!userData) return <div>Loading...</div>;
-  
+
   return (
     <ProfileCorner>
-      <ProfileHeader user={userData.user} text={`@${userData.user.username}`} />
+      <ProfileHeader
+        heading={`${userData.user.firstname} ${userData.user.lastname}`}
+        text={`@${userData.user.username}`}
+      />
       <Tabs tabList={tabList} />
       {!userData[activity].length ? (
         <EmptyMsg>
