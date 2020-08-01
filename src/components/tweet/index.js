@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import ProfileHeader from "../profileHeader";
 import Icon from "../icon";
@@ -17,14 +18,15 @@ const URL = process.env.REACT_APP_SERVER_URL;
 const Tweet = (props) => {
   const [tweet, setTweet] = useState(null);
   const { username, tweetId } = useParams();
+  const myId = useSelector((state) => state.profile.user.id);
   const location = useLocation();
+
   useEffect(() => {
     (async () => {
       const res = await axios.get(
-        `${URL}/tweet/get-tweet?username=${username}&tweetId=${tweetId}`
+        `${URL}/tweet/get-tweet?username=${username}&tweetId=${tweetId}&myId=${myId}`
       );
       setTweet(res.data.tweet);
-      console.log(tweet);
     })();
   }, []);
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import Follower from "./follower";
 import Icon from "../icon";
@@ -22,6 +23,7 @@ const URL = process.env.REACT_APP_SERVER_URL;
 const Profile = (props) => {
   const [user, setUser] = useState(null);
   const { username, activity } = useParams();
+  const myId = useSelector((state) => state.profile.user.id);
 
   useEffect(() => {
     (async () => {
@@ -68,7 +70,7 @@ const Profile = (props) => {
         return (
           <div>
             <Activity
-              url={`${URL}/user/get-tweets?userId=${user.id}`}
+              url={`${URL}/user/get-tweets?userId=${user.id}&myId=${myId}`}
               dataKey="tweets"
             />
           </div>
@@ -79,7 +81,7 @@ const Profile = (props) => {
         return (
           <div>
             <Activity
-              url={`${URL}/user/get-likes?userId=${user.id}`}
+              url={`${URL}/user/get-likes?userId=${user.id}&myId=${myId}`}
               dataKey="likes"
             />
           </div>

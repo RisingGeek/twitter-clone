@@ -151,7 +151,7 @@ export const Button = styled.button`
 
 export const PeopleFlex = styled.div`
   display: flex;
-  padding: ${props => props.padding ? props.padding : '10px 15px'};
+  padding: ${(props) => (props.padding ? props.padding : "10px 15px")};
   color: rgb(0, 0, 0);
   border-bottom: 1px solid lightgray;
   img {
@@ -161,7 +161,7 @@ export const PeopleFlex = styled.div`
     margin-right: 10px;
   }
   &:hover {
-    background-color: ${props => props.hover && 'rgb(245, 248, 250);'}
+    background-color: ${(props) => props.hover && "rgb(245, 248, 250);"};
   }
 `;
 
@@ -199,15 +199,21 @@ export const TweetDetails = styled.div`
   p {
     margin: 0;
     margin-right: 8px;
+    color: rgb(101, 119, 134);
+    font-weight: 400;
+    font-size: 15px;
   }
   h3:hover {
     text-decoration: underline;
   }
-  p,
-  span {
-    color: rgb(101, 119, 134);
-    font-weight: 400;
-    font-size: 15px;
+  button {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
   }
 `;
 
@@ -215,4 +221,11 @@ export const EmptyMsg = styled.div`
   text-align: center;
   color: rgb(101, 119, 134);
   margin-top: 4px;
+`;
+
+export const Text = styled.span`
+  margin-left: 3px;
+  font-weight: 400;
+  font-size: 15px;
+  color: ${(props) => props.color};
 `;
