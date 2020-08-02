@@ -14,6 +14,7 @@ const Lists = React.lazy(() => import("./components/lists/index"));
 const Profile = React.lazy(() => import("./components/profile/index"));
 const Tweet = React.lazy(() => import("./components/tweet/index"));
 const Likes = React.lazy(() => import("./components/tweet/likes"));
+const Retweet = React.lazy(() => import("./components/tweet/retweets"));
 
 const Routes = () => {
   const withMenuBar = (WrappedComponent) => (props) => (
@@ -33,6 +34,13 @@ const Routes = () => {
   const withLikeModal = (WrappedComponent) => (props) => (
     <React.Fragment>
       <Likes />
+      <WrappedComponent />
+    </React.Fragment>
+  );
+
+  const withRetweetModal = (WrappedComponent) => (props) => (
+    <React.Fragment>
+      <Retweet />
       <WrappedComponent />
     </React.Fragment>
   );
@@ -66,6 +74,10 @@ const Routes = () => {
           component={withMenuBar(withLikeModal(Tweet))}
         />
       </Switch>
+      <Route
+        path="/:username/status/:tweetId/retweets"
+        component={withMenuBar(withRetweetModal(Tweet))}
+      />
     </BrowserRouter>
   );
 };

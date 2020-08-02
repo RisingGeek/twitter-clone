@@ -20,8 +20,15 @@ export const ModalContent = styled.div`
 `;
 
 export const ModalHeader = styled.div`
+  display: flex;
+  align-items: center;
   padding: 13px 8px;
   border-bottom: 1px solid rgb(204, 214, 221);
+  h2 {
+    margin-bottom: 0;
+    font-size: 19px;
+    font-weight: 800;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -34,6 +41,7 @@ export const CloseButton = styled.button`
   padding: 5px;
   border-radius: 50%;
   cursor: pointer;
+  margin-right: 10px;
   &:hover {
     background-color: rgba(29, 161, 242, 0.1);
   }
@@ -50,7 +58,7 @@ export const Button = styled.button`
   padding: 8px 15px;
   cursor: pointer;
   &:hover {
-    background-color: rgb(26,145,218);
+    background-color: rgb(26, 145, 218);
   }
   &:disabled {
     opacity: 0.5;
@@ -58,7 +66,7 @@ export const Button = styled.button`
 `;
 
 export const ModalBody = styled.div`
-  padding: 15px;
+  padding: ${(props) => props.padding};
 `;
 
 export const Flex = styled.div`

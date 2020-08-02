@@ -50,6 +50,7 @@ const MenuBar = () => {
         <Modal
           children={<TweetModal handleClose={handleClose} />}
           handleClose={handleClose}
+          padding="15px"
         />
       )}
       <Header>

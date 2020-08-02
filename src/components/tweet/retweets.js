@@ -6,17 +6,17 @@ import { PeopleFlex, PeopleDetails } from "../styles/profile";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
-const Likes = () => {
-  const [likes, setLikes] = useState([]);
+const Retweet = () => {
+  const [retweets, setRetweets] = useState([]);
   const { username, tweetId } = useParams();
   const history = useHistory();
   useEffect(() => {
     (async () => {
-      const likes = await axios.get(
-        `${URL}/tweet/like/get-likes?tweetId=${tweetId}`
+      const retweets = await axios.get(
+        `${URL}/tweet/retweet/get-retweets?tweetId=${tweetId}`
       );
-      console.log(likes);
-      setLikes(likes.data.likes);
+      console.log(retweets);
+      setRetweets(retweets.data.retweets);
     })();
   }, []);
 
@@ -28,11 +28,11 @@ const Likes = () => {
     <Modal
       padding="0 0 80px 0"
       handleClose={handleClose}
-      heading="Liked by"
+      heading="Retweeted by"
       children={
         <div>
-          {likes.map((item) => (
-            <Link key={item["Likes.id"]} to={`/profile/${item.username}`}>
+          {retweets.map((item) => (
+            <Link key={item["Retweets.id"]} to={`/profile/${item.username}`}>
               <PeopleFlex key={item.id}>
                 <div>
                   <img src={item.avatar} />
@@ -68,4 +68,4 @@ const Likes = () => {
   );
 };
 
-export default Likes;
+export default Retweet;

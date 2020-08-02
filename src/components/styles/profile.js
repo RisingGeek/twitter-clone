@@ -161,7 +161,7 @@ export const PeopleFlex = styled.div`
     margin-right: 10px;
   }
   &:hover {
-    background-color: ${(props) => props.hover && "rgb(245, 248, 250);"};
+    background-color: rgb(245, 248, 250);
   }
 `;
 

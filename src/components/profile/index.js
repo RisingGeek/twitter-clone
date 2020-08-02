@@ -22,6 +22,7 @@ const URL = process.env.REACT_APP_SERVER_URL;
 
 const Profile = (props) => {
   const [user, setUser] = useState(null);
+  const [headerText, setHeaderText] = useState("");
   const { username, activity } = useParams();
   const myId = useSelector((state) => state.profile.user.id);
 
@@ -31,6 +32,10 @@ const Profile = (props) => {
       setUser(res.data);
     })();
   }, [username]);
+
+  const handleHeaderText = (text) => {
+    setHeaderText(text);
+  };
 
   if (user === null) return <div>Loading...</div>;
 
@@ -72,6 +77,8 @@ const Profile = (props) => {
             <Activity
               url={`${URL}/user/get-tweets?userId=${user.id}&myId=${myId}`}
               dataKey="tweets"
+              header="Tweets"
+              handleHeaderText={handleHeaderText}
             />
           </div>
         );
@@ -83,6 +90,8 @@ const Profile = (props) => {
             <Activity
               url={`${URL}/user/get-likes?userId=${user.id}&myId=${myId}`}
               dataKey="likes"
+              header="Likes"
+              handleHeaderText={handleHeaderText}
             />
           </div>
         );
@@ -93,7 +102,7 @@ const Profile = (props) => {
     <ProfileCorner>
       <ProfileHeader
         heading={`${user.firstname} ${user.lastname}`}
-        text="9 tweets"
+        text={headerText}
       />
       <div>
         <Cover></Cover>
