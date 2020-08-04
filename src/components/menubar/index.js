@@ -5,7 +5,6 @@ import Icon from "../icon";
 import Modal from "../modal";
 import { Header, MenuItem, MenuTitle, Button } from "../styles/menubar";
 import TweetModal from "./tweetModal";
-import { TOGGLE_MODAL } from "../../redux/actions";
 
 const MenuBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

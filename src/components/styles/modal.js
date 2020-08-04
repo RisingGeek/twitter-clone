@@ -9,6 +9,7 @@ export const ModalWrapper = styled.div`
   height: 100%;
   padding-top: 4vh;
   background-color: rgba(0, 0, 0, 0.4);
+  overflow: scroll;
 `;
 
 export const ModalContent = styled.div`
@@ -17,6 +18,9 @@ export const ModalContent = styled.div`
   width: 40%;
   background-color: rgb(255, 255, 255);
   border-radius: 15px;
+  @media(max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const ModalHeader = styled.div`

@@ -7,7 +7,6 @@ import {
   CloseButton,
   ModalBody,
 } from "./styles/modal";
-import ProfileHeader from "./profileHeader";
 
 const Modal = (props) => {
   const { children, handleClose, padding, heading } = props;
