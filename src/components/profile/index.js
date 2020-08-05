@@ -8,21 +8,16 @@ import ProfileHeader from "../profileHeader";
 import Tabs from "../tabs";
 import Follow from "../follow/index";
 import Activity from "./activity";
-import {
-  ProfileCorner,
-  Info,
-  Dates,
-  Cover,
-  Avatar,
-  ImgFlex,
-  Button,
-} from "../styles/profile";
+import Modal from "../modal";
+import { Info, Dates, Cover, Avatar, ImgFlex, Button } from "../styles/profile";
+import { ProfileCorner } from "../styles/common";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
 const Profile = (props) => {
   const [user, setUser] = useState(null);
   const [headerText, setHeaderText] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { username, activity } = useParams();
   const myId = useSelector((state) => state.profile.user.id);
 
@@ -99,6 +94,12 @@ const Profile = (props) => {
   };
 
   return (
+    <React.Fragment>
+    {isModalOpen && <Modal
+    children={<div>ok</div>}
+    handleClose={() => setIsModalOpen(false)}
+    padding="15px"
+     />}
     <ProfileCorner>
       <ProfileHeader
         heading={`${user.firstname} ${user.lastname}`}
@@ -110,7 +111,7 @@ const Profile = (props) => {
           <Avatar>
             <img src={user.avatar} />
           </Avatar>
-          <Button>Edit profile</Button>
+          <Button onClick={() => setIsModalOpen(true)}>Edit profile</Button>
         </ImgFlex>
       </div>
       <Info>
@@ -153,6 +154,7 @@ const Profile = (props) => {
       <Tabs tabList={tabList} />
       {renderTab()}
     </ProfileCorner>
+    </React.Fragment>
   );
 };
 

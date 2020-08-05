@@ -3,12 +3,8 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import ProfileHeader from "../profileHeader";
 import Tabs from "../tabs";
-import {
-  ProfileCorner,
-  PeopleFlex,
-  PeopleDetails,
-  EmptyMsg,
-} from "../styles/profile";
+import { PeopleFlex, PeopleDetails, EmptyMsg } from "../styles/profile";
+import { ProfileCorner } from "../styles/common";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 

@@ -4,6 +4,7 @@ export const Header = styled.header`
   padding-left: 10px;
   padding-right: 10px;
   width: 70%;
+  height: 100vh;
   margin-left: auto;
   margin-right: auto;
   position: sticky;
@@ -15,10 +16,12 @@ export const Header = styled.header`
       border-radius: 50px;
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     width: 100%;
     display: flex;
     flex-direction: column;
+  }
+  @media (max-width: 768px) {
     align-items: center;
   }
 `;
@@ -54,7 +57,7 @@ export const MenuTitle = styled.span`
 
 export const Button = styled.button`
   width: ${(props) => props.width};
-  height: ${(props) => props.height};
+  ${(props) => props.height && `height: ${props.height}`};
   background: rgba(29, 161, 242, 1);
   border: none;
   border-radius: 50px;

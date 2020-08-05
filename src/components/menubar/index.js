@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Icon from "../icon";
 import Modal from "../modal";
 import { Header, MenuItem, MenuTitle, Button } from "../styles/menubar";
@@ -53,16 +53,18 @@ const MenuBar = () => {
         />
       )}
       <Header>
-        <MenuItem logo>
-          <div>
-            <Icon
-              d={brand}
-              width="35px"
-              height="35px"
-              fill="rgba(29,161,242,1.00)"
-            />
-          </div>
-        </MenuItem>
+        <Link to="/home">
+          <MenuItem logo>
+            <div>
+              <Icon
+                d={brand}
+                width="35px"
+                height="35px"
+                fill="rgba(29,161,242,1.00)"
+              />
+            </div>
+          </MenuItem>
+        </Link>
         {Object.keys(paths).map((item) => {
           return (
             <NavLink
@@ -83,7 +85,6 @@ const MenuBar = () => {
         {window.innerWidth > 768 ? (
           <Button
             width="100%"
-            height="100%"
             padding="12px 30px"
             onClick={() => setIsModalOpen(true)}
           >
@@ -99,6 +100,17 @@ const MenuBar = () => {
             +
           </Button>
         )}
+        <Button
+          width="100%"
+          padding="12px 30px"
+          style={{
+            position: "absolute",
+            left: 0,
+            bottom: "20px",
+          }}
+        >
+          Logout
+        </Button>
       </Header>
     </React.Fragment>
   );

@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import ProfileHeader from "../profileHeader";
 import Icon from "../icon";
-import { ProfileCorner } from "../styles/profile";
 import {
   TweetWrapper,
   Flex,
@@ -12,6 +11,7 @@ import {
   ActivityInfo,
   Activity,
 } from "../styles/tweet";
+import { ProfileCorner } from "../styles/common";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 

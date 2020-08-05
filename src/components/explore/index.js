@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "../icon";
 import { Search } from "../styles/explore";
-import { ProfileCorner } from "../styles/profile";
+import { ProfileCorner } from "../styles/common";
 
 const Explore = () => {
   const searchIcon = [

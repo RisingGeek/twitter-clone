@@ -1,17 +1,10 @@
 import styled from "styled-components";
 
-export const ProfileCorner = styled.div`
-  border-left: 1px solid lightgray;
-  border-right: 1px solid lightgray;
-  min-height: 100vh;
-  padding-bottom: 20%;
-`;
-
 export const HeaderWrapper = styled.div`
   position: sticky;
   background-color: white;
   top: 0;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid rgb(230, 236, 240);
 `;
 
 export const Header = styled.header`
@@ -92,7 +85,7 @@ export const FollowFlex = styled.div`
 export const Tab = styled.nav`
   display: flex;
   text-align: center;
-  border-bottom: 1.8px solid lightgray;
+  border-bottom: 1.8px solid rgb(230, 236, 240);
   div {
     padding: 15px;
   }
@@ -153,7 +146,7 @@ export const PeopleFlex = styled.div`
   display: flex;
   padding: ${(props) => (props.padding ? props.padding : "10px 15px")};
   color: rgb(0, 0, 0);
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid rgb(230, 236, 240);
   img {
     width: 49px;
     height: 49px;
