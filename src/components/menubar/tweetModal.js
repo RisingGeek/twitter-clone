@@ -18,8 +18,9 @@ const TweetModal = (props) => {
     const data = new FormData();
     data.append("userId", user.id);
     data.append("text", text);
-    data.append("media", preview.media);
-    data.append("resource_type", preview.image ? "image" : "video");
+    if (preview.media) data.append("media", preview.media);
+    if (preview.image || preview.video)
+      data.append("resource_type", preview.image ? "image" : "video");
     const res = await axios.post(`${URL}/tweet/add-tweet`, data);
     setIsTweetDisabled(false);
     handleClose && handleClose();

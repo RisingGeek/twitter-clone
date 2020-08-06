@@ -12,6 +12,7 @@ import {
   Text,
   UserImage,
 } from "../styles/profile";
+import { isImage, isVideo } from "../../media";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -45,14 +46,6 @@ const Activity = (props) => {
       },
       ...tweets.slice(idx + 1),
     ]);
-  };
-
-  const isImage = (url) => {
-    return url.match(/.(jpeg|jpg|gif|png)$/) !== null;
-  };
-
-  const isVideo = (url) => {
-    return url.match(/.(mp4|ogg|mov|mkv|avi)$/);
   };
 
   if (!tweets) return <div>Loading...</div>;

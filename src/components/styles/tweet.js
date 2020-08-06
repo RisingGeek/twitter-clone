@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const TweetWrapper = styled.div`
   border-bottom: 1px solid rgb(230, 236, 240);
-  img {
-    width: 49px;
-    height: 49px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
+`;
+
+export const UserImage = styled.img`
+  width: 49px;
+  height: 49px;
+  border-radius: 50%;
+  margin-right: 10px;
 `;
 
 export const Flex = styled.div`

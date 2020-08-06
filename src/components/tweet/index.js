@@ -10,8 +10,10 @@ import {
   TweetText,
   ActivityInfo,
   Activity,
+  UserImage,
 } from "../styles/tweet";
 import { ProfileCorner } from "../styles/common";
+import { isImage, isVideo } from "../../media";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -50,7 +52,7 @@ const Tweet = (props) => {
         <div style={{ padding: "10px 15px 0px 15px" }}>
           <Flex>
             <div>
-              <img src={tweet.avatar} />
+              <UserImage src={tweet.avatar} />
             </div>
             <div>
               <Link to={`/profile/${tweet.username}`}>
@@ -63,6 +65,16 @@ const Tweet = (props) => {
           </Flex>
           <TweetText>
             <p>{tweet["Tweets.text"]}</p>
+            {tweet["Tweets.media"] && isImage(tweet["Tweets.media"]) && (
+              <img src={tweet["Tweets.media"]} style={{ width: "100%" }} />
+            )}
+            {tweet["Tweets.media"] && isVideo(tweet["Tweets.media"]) && (
+              <video
+                src={tweet["Tweets.media"]}
+                style={{ width: "100%" }}
+                controls
+              ></video>
+            )}
             <div>
               {date.toLocaleTimeString("en-US", {
                 hour: "numeric",
