@@ -9,16 +9,18 @@ const URL = process.env.REACT_APP_SERVER_URL;
 const TweetModal = (props) => {
   const [text, setText] = useState("");
   const [isTweetDisabled, setIsTweetDisabled] = useState(true);
-  const [preview, setPreview] = useState({ image: "", video: "" });
+  const [preview, setPreview] = useState({ image: "", video: "", media: null });
   const user = useSelector((state) => state.profile.user);
   const { handleClose, rows } = props;
 
   const addTweet = async () => {
     setIsTweetDisabled(true);
-    const res = await axios.post(`${URL}/tweet/add-tweet`, {
-      userId: user.id,
-      text,
-    });
+    const data = new FormData();
+    data.append("userId", user.id);
+    data.append("text", text);
+    data.append("media", preview.media);
+    data.append("resource_type", preview.image ? "image" : "video");
+    const res = await axios.post(`${URL}/tweet/add-tweet`, data);
     setIsTweetDisabled(false);
     handleClose && handleClose();
   };
@@ -29,11 +31,10 @@ const TweetModal = (props) => {
     const url = reader.readAsDataURL(file);
     const isImage = file.type.includes("image");
 
-    console.log(file.type);
     reader.onloadend = () => {
       isImage
-        ? setPreview({ image: reader.result, video: "" })
-        : setPreview({ image: "", video: reader.result });
+        ? setPreview({ image: reader.result, video: "", media: file })
+        : setPreview({ image: "", video: reader.result, media: file });
     };
   };
 
@@ -63,7 +64,13 @@ const TweetModal = (props) => {
           {preview.image && (
             <img src={preview.image} style={{ width: "100%" }} />
           )}
-          {preview.video && <video src={preview.video} style={{width: '100%'}} controls></video>}
+          {preview.video && (
+            <video
+              src={preview.video}
+              style={{ width: "100%" }}
+              controls
+            ></video>
+          )}
         </div>
         <Flex style={{ alignItems: "center", justifyContent: "flex-end" }}>
           <div>

@@ -5,7 +5,13 @@ import { useSelector } from "react-redux";
 import Icon from "../icon";
 import Like from "./like";
 import Retweet from "./retweet";
-import { PeopleFlex, TweetDetails, EmptyMsg, Text } from "../styles/profile";
+import {
+  PeopleFlex,
+  TweetDetails,
+  EmptyMsg,
+  Text,
+  UserImage,
+} from "../styles/profile";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -41,6 +47,14 @@ const Activity = (props) => {
     ]);
   };
 
+  const isImage = (url) => {
+    return url.match(/.(jpeg|jpg|gif|png)$/) !== null;
+  };
+
+  const isVideo = (url) => {
+    return url.match(/.(mp4|ogg|mov|mkv|avi)$/);
+  };
+
   if (!tweets) return <div>Loading...</div>;
 
   if (!tweets.length)
@@ -50,6 +64,7 @@ const Activity = (props) => {
       </EmptyMsg>
     );
   return tweets.map((tweet, idx) => {
+    console.log(tweet);
     const date = new Date(tweet["Tweets.createdAt"]);
     return (
       <Link
@@ -58,7 +73,7 @@ const Activity = (props) => {
       >
         <PeopleFlex hover>
           <div>
-            <img src={tweet.avatar} />
+            <UserImage src={tweet.avatar} />
           </div>
           <div style={{ width: "100%" }}>
             <TweetDetails>
@@ -79,6 +94,16 @@ const Activity = (props) => {
               </span>
             </TweetDetails>
             <div>{tweet["Tweets.text"]}</div>
+            {tweet["Tweets.media"] && isImage(tweet["Tweets.media"]) && (
+              <img src={tweet["Tweets.media"]} style={{ width: "100%" }} />
+            )}
+            {tweet["Tweets.media"] && isVideo(tweet["Tweets.media"]) && (
+              <video
+                src={tweet["Tweets.media"]}
+                style={{ width: "100%" }}
+                controls
+              ></video>
+            )}
             <TweetDetails
               style={{ justifyContent: "space-between", width: "80%" }}
             >

@@ -147,15 +147,16 @@ export const PeopleFlex = styled.div`
   padding: ${(props) => (props.padding ? props.padding : "10px 15px")};
   color: rgb(0, 0, 0);
   border-bottom: 1px solid rgb(230, 236, 240);
-  img {
-    width: 49px;
-    height: 49px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
   &:hover {
     background-color: rgb(245, 248, 250);
   }
+`;
+
+export const UserImage = styled.img`
+  width: 49px;
+  height: 49px;
+  border-radius: 50%;
+  margin-right: 10px;
 `;
 
 export const PeopleDetails = styled.div`
