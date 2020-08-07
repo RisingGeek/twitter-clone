@@ -32,7 +32,6 @@ const Activity = (props) => {
       const res = await axios.get(url);
       setTweets(res.data.tweets);
       handleHeaderText(`${res.data.tweets.length} ${header}`);
-      console.log(res.data);
     })();
   }, [url]);
 
@@ -57,7 +56,6 @@ const Activity = (props) => {
       </EmptyMsg>
     );
   return tweets.map((tweet, idx) => {
-    console.log(tweet);
     const date = new Date(tweet["Tweets.createdAt"]);
     return (
       <Link

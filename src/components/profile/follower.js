@@ -18,7 +18,7 @@ const Follower = (props) => {
         following: res.data.following,
       });
     })();
-  }, []);
+  }, [user]);
 
   if (!response) return <React.Fragment></React.Fragment>;
 

@@ -15,6 +15,7 @@ const Profile = React.lazy(() => import("./components/profile/index"));
 const Tweet = React.lazy(() => import("./components/tweet/index"));
 const Likes = React.lazy(() => import("./components/tweet/likes"));
 const Retweet = React.lazy(() => import("./components/tweet/retweets"));
+const SideBar = React.lazy(() => import("./components/sidebar/index"));
 
 const Routes = () => {
   const withMenuBar = (WrappedComponent) => (props) => (
@@ -26,7 +27,7 @@ const Routes = () => {
         <WrappedComponent />
       </Col>
       <Col md={8} xs={0}>
-        side bar
+        <SideBar />
       </Col>
     </Row>
   );

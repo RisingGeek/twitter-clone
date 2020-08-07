@@ -23,6 +23,8 @@ const TweetModal = (props) => {
       data.append("resource_type", preview.image ? "image" : "video");
     const res = await axios.post(`${URL}/tweet/add-tweet`, data);
     setIsTweetDisabled(false);
+    setText("");
+    setPreview({ image: "", video: "", media: null });
     handleClose && handleClose();
   };
 

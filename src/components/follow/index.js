@@ -3,7 +3,12 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import ProfileHeader from "../profileHeader";
 import Tabs from "../tabs";
-import { PeopleFlex, PeopleDetails, EmptyMsg } from "../styles/profile";
+import {
+  PeopleFlex,
+  PeopleDetails,
+  EmptyMsg,
+  UserImage,
+} from "../styles/profile";
 import { ProfileCorner } from "../styles/common";
 
 const URL = process.env.REACT_APP_SERVER_URL;
@@ -58,7 +63,7 @@ const Follow = () => {
             <Link key={item.id} to={`/profile/${item.username}`}>
               <PeopleFlex key={item.id}>
                 <div>
-                  <img src={item.avatar} />
+                  <UserImage src={item.avatar} />
                 </div>
                 <div style={{ width: "100%" }}>
                   <PeopleDetails>
