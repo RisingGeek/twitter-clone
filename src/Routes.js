@@ -16,6 +16,7 @@ const Tweet = React.lazy(() => import("./components/tweet/index"));
 const Likes = React.lazy(() => import("./components/tweet/likes"));
 const Retweet = React.lazy(() => import("./components/tweet/retweets"));
 const SideBar = React.lazy(() => import("./components/sidebar/index"));
+const PageNotFound = React.lazy(() => import("./components/pageNotFound"));
 
 const Routes = () => {
   const withMenuBar = (WrappedComponent) => (props) => (
@@ -46,11 +47,22 @@ const Routes = () => {
     </React.Fragment>
   );
 
+  const withOnlyMenuBar = (WrappedComponent) => (props) => (
+    <Row>
+      <Col md={7} xs={5}>
+        <MenuBar />
+      </Col>
+      <Col md={17} xs={19}>
+        <WrappedComponent />
+      </Col>
+    </Row>
+  );
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={SignIn} />
-        <Route path="/home" component={withMenuBar(Home)} />
+        <Route exact path="/home" component={withMenuBar(Home)} />
         <Route path="/explore" component={withMenuBar(Explore)} />
         <Route path="/notifications" component={withMenuBar(Notifications)} />
         <Route path="/messages" component={withMenuBar(Messages)} />
@@ -74,11 +86,12 @@ const Routes = () => {
           path="/:username/status/:tweetId/likes"
           component={withMenuBar(withLikeModal(Tweet))}
         />
+        <Route
+          path="/:username/status/:tweetId/retweets"
+          component={withMenuBar(withRetweetModal(Tweet))}
+        />
+        <Route component={withOnlyMenuBar(PageNotFound)} />
       </Switch>
-      <Route
-        path="/:username/status/:tweetId/retweets"
-        component={withMenuBar(withRetweetModal(Tweet))}
-      />
     </BrowserRouter>
   );
 };

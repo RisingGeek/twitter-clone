@@ -31,7 +31,8 @@ const Activity = (props) => {
     (async () => {
       const res = await axios.get(url);
       setTweets(res.data.tweets);
-      handleHeaderText(`${res.data.tweets.length} ${header}`);
+      handleHeaderText &&
+        handleHeaderText(`${res.data.tweets.length} ${header}`);
     })();
   }, [url]);
 
