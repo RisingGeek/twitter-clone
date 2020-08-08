@@ -21,3 +21,10 @@ export const Search = styled.div`
     }
   }
 `;
+
+export const AutoComplete = styled.div`
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px,
+    rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
+`;
