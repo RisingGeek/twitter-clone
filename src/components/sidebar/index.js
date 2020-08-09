@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { SideBarBox, Header, Users, UserFlex, Button } from "../styles/sidebar";
+import Loading from "../loading";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -30,7 +31,7 @@ const SideBar = () => {
     setFollowDisabled(false);
   };
 
-  if (!whoFollow) return <div>Loading...</div>;
+  if (!whoFollow) return <Loading />;
   return (
     <SideBarBox>
       <Header>

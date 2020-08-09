@@ -16,7 +16,7 @@ const Home = () => {
       <Tweet>
         <TweetModal rows={3} />
       </Tweet>
-      <Activity url={`${URL}/feed?userId=${userId}`} />
+      <Activity url={`${URL}/feed?userId=${userId}`} feed />
     </ProfileCorner>
   );
 };

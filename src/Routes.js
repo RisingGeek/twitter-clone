@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import { Row, Col } from "antd";
 const MenuBar = React.lazy(() => import("./components/menubar/index"));
 const SignIn = React.lazy(() => import("./components/signin/index"));
@@ -59,7 +59,7 @@ const Routes = () => {
   );
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route exact path="/" component={SignIn} />
         <Route exact path="/home" component={withMenuBar(Home)} />
@@ -92,7 +92,7 @@ const Routes = () => {
         />
         <Route component={withOnlyMenuBar(PageNotFound)} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

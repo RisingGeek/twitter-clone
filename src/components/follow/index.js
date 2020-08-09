@@ -10,6 +10,7 @@ import {
   UserImage,
 } from "../styles/profile";
 import { ProfileCorner } from "../styles/common";
+import Loading from '../loading';
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -42,7 +43,7 @@ const Follow = () => {
     },
   ];
 
-  if (!userData) return <div>Loading...</div>;
+  if (!userData) return <Loading />;
 
   return (
     <ProfileCorner>

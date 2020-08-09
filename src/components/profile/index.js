@@ -11,6 +11,7 @@ import Activity from "./activity";
 import Modal from "../modal";
 import { Info, Dates, Cover, Avatar, ImgFlex, Button } from "../styles/profile";
 import { ProfileCorner } from "../styles/common";
+import Loading from "../loading";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -32,7 +33,7 @@ const Profile = (props) => {
     setHeaderText(text);
   };
 
-  if (user === null) return <div>Loading...</div>;
+  if (user === null) return <Loading />;
 
   const dob = new Date(user.dob);
   const joinedAt = new Date(user.createdAt);
@@ -95,65 +96,67 @@ const Profile = (props) => {
 
   return (
     <React.Fragment>
-    {isModalOpen && <Modal
-    children={<div>ok</div>}
-    handleClose={() => setIsModalOpen(false)}
-    padding="15px"
-     />}
-    <ProfileCorner>
-      <ProfileHeader
-        heading={`${user.firstname} ${user.lastname}`}
-        text={headerText}
-      />
-      <div>
-        <Cover></Cover>
-        <ImgFlex>
-          <Avatar>
-            <img src={user.avatar} />
-          </Avatar>
-          <Button onClick={() => setIsModalOpen(true)}>Edit profile</Button>
-        </ImgFlex>
-      </div>
-      <Info>
-        <h2>
-          {user.firstname} {user.lastname}
-        </h2>
-        <p>@{user.username}</p>
-        <Dates>
-          <div>
-            <Icon
-              d={dobPath}
-              width="18.75"
-              height="18.75"
-              fill="rgb(101, 119, 134)"
-            />
-            <span>
-              Born {dob.toLocaleString("default", { month: "long" })}{" "}
-              {dob.getDate()}, {dob.getFullYear()}
-            </span>
-          </div>
-          <div>
-            <Icon
-              d={joinPath}
-              width="18.75"
-              height="18.75"
-              fill="rgb(101, 119, 134)"
-            />
-            <span>
-              {" "}
-              Joined{" "}
-              {joinedAt.toLocaleString("default", {
-                month: "long",
-              })}{" "}
-              {joinedAt.getFullYear()}
-            </span>
-          </div>
-        </Dates>
-        <Follower user={user} />
-      </Info>
-      <Tabs tabList={tabList} />
-      {renderTab()}
-    </ProfileCorner>
+      {isModalOpen && (
+        <Modal
+          children={<div>ok</div>}
+          handleClose={() => setIsModalOpen(false)}
+          padding="15px"
+        />
+      )}
+      <ProfileCorner>
+        <ProfileHeader
+          heading={`${user.firstname} ${user.lastname}`}
+          text={headerText}
+        />
+        <div>
+          <Cover></Cover>
+          <ImgFlex>
+            <Avatar>
+              <img src={user.avatar} />
+            </Avatar>
+            <Button onClick={() => setIsModalOpen(true)}>Edit profile</Button>
+          </ImgFlex>
+        </div>
+        <Info>
+          <h2>
+            {user.firstname} {user.lastname}
+          </h2>
+          <p>@{user.username}</p>
+          <Dates>
+            <div>
+              <Icon
+                d={dobPath}
+                width="18.75"
+                height="18.75"
+                fill="rgb(101, 119, 134)"
+              />
+              <span>
+                Born {dob.toLocaleString("default", { month: "long" })}{" "}
+                {dob.getDate()}, {dob.getFullYear()}
+              </span>
+            </div>
+            <div>
+              <Icon
+                d={joinPath}
+                width="18.75"
+                height="18.75"
+                fill="rgb(101, 119, 134)"
+              />
+              <span>
+                {" "}
+                Joined{" "}
+                {joinedAt.toLocaleString("default", {
+                  month: "long",
+                })}{" "}
+                {joinedAt.getFullYear()}
+              </span>
+            </div>
+          </Dates>
+          <Follower user={user} />
+        </Info>
+        <Tabs tabList={tabList} />
+        {renderTab()}
+      </ProfileCorner>
     </React.Fragment>
   );
 };
