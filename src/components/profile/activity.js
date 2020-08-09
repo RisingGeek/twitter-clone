@@ -55,7 +55,7 @@ const Activity = (props) => {
     return (
       <EmptyMsg>
         {feed
-          ? "Follow some people to get feed updates"
+          ? "You are all caught up!"
           : `@${username} has no ${dataKey} yet!`}
       </EmptyMsg>
     );
