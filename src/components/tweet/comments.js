@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Loading from "../loading";
 import { PeopleFlex, UserImage, TweetDetails } from "../styles/profile";
@@ -9,9 +9,12 @@ const URL = process.env.REACT_APP_SERVER_URL;
 
 const Comments = () => {
   const [comments, setComments] = useState(null);
+  const { tweetId } = useParams();
   useEffect(() => {
     (async () => {
-      const res = await axios.get(`${URL}/tweet/comment/get-comments`);
+      const res = await axios.get(
+        `${URL}/tweet/comment/get-comments?tweetId=${tweetId}`
+      );
       setComments(res.data.comments);
       console.log(res.data);
     })();
