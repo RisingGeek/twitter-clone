@@ -1,28 +1,31 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import {useParams} from 'react-router-dom';
 import axios from "axios";
 import UploadButton from "../uploadButton";
 import { Flex, Button } from "../styles/modal";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
-const TweetModal = (props) => {
+const CommentModal = (props) => {
   const [text, setText] = useState("");
-  const [isTweetDisabled, setIsTweetDisabled] = useState(true);
+  const [isCommentDisabled, setIsCommentDisabled] = useState(true);
   const [preview, setPreview] = useState({ image: "", video: "", media: null });
   const user = useSelector((state) => state.profile.user);
+  const {tweetId} = useParams();
   const { handleClose, rows } = props;
 
-  const addTweet = async () => {
-    setIsTweetDisabled(true);
+  const addComment = async () => {
+    setIsCommentDisabled(true);
     const data = new FormData();
+    data.append("tweetId", tweetId)
     data.append("userId", user.id);
     data.append("text", text);
     if (preview.media) data.append("media", preview.media);
     if (preview.image || preview.video)
       data.append("resource_type", preview.image ? "image" : "video");
-    const res = await axios.post(`${URL}/tweet/add-tweet`, data);
-    setIsTweetDisabled(false);
+    const res = await axios.post(`${URL}/tweet/comment/add`, data);
+    setIsCommentDisabled(false);
     setText("");
     setPreview({ image: "", video: "", media: null });
     handleClose && handleClose();
@@ -54,13 +57,13 @@ const TweetModal = (props) => {
       <div style={{ width: "100%" }}>
         <textarea
           rows={rows || 5}
-          placeholder="What's happening?"
+          placeholder="Tweet your reply"
           value={text}
           onChange={(e) => {
             setText(e.target.value);
             e.target.value
-              ? setIsTweetDisabled(false)
-              : setIsTweetDisabled(true);
+              ? setIsCommentDisabled(false)
+              : setIsCommentDisabled(true);
           }}
         ></textarea>
         <div style={{ marginBottom: "10px" }}>
@@ -90,8 +93,8 @@ const TweetModal = (props) => {
             />
           </div>
           <div>
-            <Button onClick={addTweet} disabled={isTweetDisabled}>
-              Tweet
+            <Button onClick={addComment} disabled={isCommentDisabled}>
+              Reply
             </Button>
           </div>
         </Flex>
@@ -100,4 +103,4 @@ const TweetModal = (props) => {
   );
 };
 
-export default TweetModal;
+export default CommentModal;

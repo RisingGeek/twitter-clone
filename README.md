@@ -1,7 +1,9 @@
 # Twitter Clone Frontend
 
 Twitter clone built using React, Redux.
+
 Demo - [https://twitter-geek.netlify.app/](https://twitter-geek.netlify.app/)
+
 Backend Repository - [https://github.com/RisingGeek/twitter-clone-backend](https://github.com/RisingGeek/twitter-clone-backend)
 
 ## Features

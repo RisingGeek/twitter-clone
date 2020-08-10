@@ -64,4 +64,7 @@ export const Activity = styled.div`
   justify-content: space-around;
   padding-top: 15px;
   padding-bottom: 15px;
+  div {
+    cursor: pointer;
+  }
 `;

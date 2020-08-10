@@ -15,11 +15,15 @@ import {
 import { ProfileCorner } from "../styles/common";
 import { isImage, isVideo } from "../../media";
 import Loading from "../loading";
+import Modal from "../modal";
+import CommentModal from "./commentModal";
+import Comments from './comments';
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
 const Tweet = (props) => {
   const [tweet, setTweet] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { username, tweetId } = useParams();
   const myId = useSelector((state) => state.profile.user.id);
   const location = useLocation();
@@ -32,6 +36,10 @@ const Tweet = (props) => {
       setTweet(res.data.tweet);
     })();
   }, []);
+
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
 
   if (!tweet) return <Loading />;
 
@@ -48,6 +56,13 @@ const Tweet = (props) => {
   const date = new Date(tweet["Tweets.createdAt"]);
   return (
     <ProfileCorner>
+      {isModalOpen && (
+        <Modal
+          children={<CommentModal handleClose={handleClose} />}
+          handleClose={handleClose}
+          padding="15px"
+        />
+      )}
       <ProfileHeader heading="Tweet" />
       <TweetWrapper>
         <div style={{ padding: "10px 15px 0px 15px" }}>
@@ -95,7 +110,7 @@ const Tweet = (props) => {
             </Link>
           </ActivityInfo>
           <Activity>
-            <div>
+            <div onClick={() => setIsModalOpen(true)}>
               <Icon
                 d={commentPath}
                 width="18.75px"
@@ -131,6 +146,7 @@ const Tweet = (props) => {
           </Activity>
         </div>
       </TweetWrapper>
+      <Comments />
     </ProfileCorner>
   );
 };
