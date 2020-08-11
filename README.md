@@ -30,7 +30,7 @@ Backend Repository - [https://github.com/RisingGeek/twitter-clone-backend](https
     REACT_APP_SERVER_URL=[http://localhost:5000](http://localhost:5000)
 ```
 
-- `npm install && npm run dev`
+- `npm install && npm start`
 
 ## Demo
 
