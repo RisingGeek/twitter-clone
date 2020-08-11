@@ -29,13 +29,14 @@ const Activity = (props) => {
 
   useEffect(() => {
     // ComponentDidMount
-    (async () => {
-      const res = await axios.get(url);
-      setTweets(res.data.tweets);
-      handleHeaderText &&
-        handleHeaderText(`${res.data.tweets.length} ${header}`);
-    })();
+    getData();
   }, [url]);
+
+  const getData = async () => {
+    const res = await axios.get(url);
+    setTweets(res.data.tweets);
+    handleHeaderText && handleHeaderText(`${res.data.tweets.length} ${header}`);
+  };
 
   const updateDetails = (idx, newState) => {
     setTweets([
@@ -117,6 +118,7 @@ const Activity = (props) => {
                 idx={idx}
                 updateDetails={updateDetails}
                 myId={myId}
+                getData={getData}
               />
               <Like
                 tweets={tweets}
@@ -124,6 +126,7 @@ const Activity = (props) => {
                 idx={idx}
                 updateDetails={updateDetails}
                 myId={myId}
+                getData={getData}
               />
             </TweetDetails>
           </div>
