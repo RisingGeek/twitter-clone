@@ -1,6 +1,6 @@
 import React from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
-import { Row, Col } from "antd";
+import { Row, Col } from "./components/styles/common";
 const MenuBar = React.lazy(() => import("./components/menubar/index"));
 const SignIn = React.lazy(() => import("./components/signin/index"));
 const Home = React.lazy(() => import("./components/home/index"));

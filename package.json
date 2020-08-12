@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.11.2",
-    "antd": "^4.4.3",
+    "antd": "^4.5.3",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "react": "^16.13.1",
