@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import Loading from "../loading";
 import { PeopleFlex, UserImage, TweetDetails } from "../styles/profile";
@@ -10,6 +11,9 @@ const URL = process.env.REACT_APP_SERVER_URL;
 const Comments = () => {
   const [comments, setComments] = useState(null);
   const { tweetId } = useParams();
+  const refresh = useSelector((state) => state.update.refresh);
+  console.log(refresh);
+
   useEffect(() => {
     (async () => {
       const res = await axios.get(
@@ -18,7 +22,7 @@ const Comments = () => {
       setComments(res.data.comments);
       console.log(res.data);
     })();
-  }, []);
+  }, [refresh]);
 
   if (!comments) return <Loading />;
   return (

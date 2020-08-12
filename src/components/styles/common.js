@@ -20,3 +20,24 @@ export const Header = styled.div`
     margin-bottom: 0;
   }
 `;
+
+export const ActivityBox = styled.button`
+  display: flex;
+  align-items: center;
+  &:hover {
+    div {
+      background-color: ${(props) => props.hoverBg};
+    }
+    svg {
+      fill: ${(props) => props.hoverColor};
+    }
+    span {
+      color: ${(props) => props.hoverColor};
+    }
+  }
+`;
+
+export const ActivityIcon = styled.div`
+  padding: 8px;
+  border-radius: 50%;
+`;

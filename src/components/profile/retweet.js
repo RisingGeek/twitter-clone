@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Icon from "../icon";
 import { Text } from "../styles/profile";
+import { ActivityBox, ActivityIcon } from "../styles/common";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -29,7 +30,7 @@ const Retweet = (props) => {
           ["selfRetweeted", false],
           ["Tweets.retweetsCount", tweets[idx]["Tweets.retweetsCount"] - 1],
         ]);
-        getData();
+        getData && getData();
         setRetweetDisabled(false);
       } catch (err) {
         console.log(err.response.data);
@@ -56,22 +57,26 @@ const Retweet = (props) => {
   };
 
   return (
-    <button
+    <ActivityBox
       onClick={(event) => handleRetweet(event, idx)}
       disabled={retweetDisabled}
+      hoverColor="rgb(23,191,99)"
+      hoverBg="rgba(23,191,99,0.1)"
     >
-      <Icon
-        d={retweetPath}
-        width="18.75px"
-        height="18.75px"
-        fill={tweet.selfRetweeted ? "rgb(23, 191, 99)" : "rgb(101, 119, 134)"}
-      />
+      <ActivityIcon>
+        <Icon
+          d={retweetPath}
+          width="18.75px"
+          height="18.75px"
+          fill={tweet.selfRetweeted ? "rgb(23, 191, 99)" : "rgb(101, 119, 134)"}
+        />
+      </ActivityIcon>
       <Text
         color={tweet.selfRetweeted ? "rgb(23, 191, 99)" : "rgb(101, 119, 134)"}
       >
         {tweet["Tweets.retweetsCount"]}
       </Text>
-    </button>
+    </ActivityBox>
   );
 };
 

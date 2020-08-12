@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import {useParams} from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import UploadButton from "../uploadButton";
 import { Flex, Button } from "../styles/modal";
+import { SET_UPDATE } from "../../redux/actions";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -11,14 +12,18 @@ const CommentModal = (props) => {
   const [text, setText] = useState("");
   const [isCommentDisabled, setIsCommentDisabled] = useState(true);
   const [preview, setPreview] = useState({ image: "", video: "", media: null });
+
   const user = useSelector((state) => state.profile.user);
-  const {tweetId} = useParams();
+  const dispatch = useDispatch();
+
+  const { tweetId } = useParams();
+
   const { handleClose, rows } = props;
 
   const addComment = async () => {
     setIsCommentDisabled(true);
     const data = new FormData();
-    data.append("tweetId", tweetId)
+    data.append("tweetId", tweetId);
     data.append("userId", user.id);
     data.append("text", text);
     if (preview.media) data.append("media", preview.media);
@@ -28,6 +33,7 @@ const CommentModal = (props) => {
     setIsCommentDisabled(false);
     setText("");
     setPreview({ image: "", video: "", media: null });
+    dispatch({ type: SET_UPDATE });
     handleClose && handleClose();
   };
 

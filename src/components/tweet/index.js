@@ -17,7 +17,7 @@ import { isImage, isVideo } from "../../media";
 import Loading from "../loading";
 import Modal from "../modal";
 import CommentModal from "./commentModal";
-import Comments from './comments';
+import Comments from "./comments";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -25,7 +25,9 @@ const Tweet = (props) => {
   const [tweet, setTweet] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { username, tweetId } = useParams();
+
   const myId = useSelector((state) => state.profile.user.id);
+
   const location = useLocation();
 
   useEffect(() => {
@@ -117,9 +119,6 @@ const Tweet = (props) => {
                 height="18.75px"
                 fill="rgb(101, 119, 134)"
               />
-              <span style={{ marginLeft: "3px" }}>
-                {tweet["Tweets.commentsCount"]}
-              </span>
             </div>
             <div>
               <Icon
@@ -128,9 +127,6 @@ const Tweet = (props) => {
                 height="18.75px"
                 fill="rgb(101, 119, 134)"
               />
-              <span style={{ marginLeft: "3px" }}>
-                {tweet["Tweets.retweetsCount"]}
-              </span>
             </div>
             <div>
               <Icon
@@ -139,9 +135,6 @@ const Tweet = (props) => {
                 height="18.75px"
                 fill="rgb(101, 119, 134)"
               />
-              <span style={{ marginLeft: "3px" }}>
-                {tweet["Tweets.likesCount"]}
-              </span>
             </div>
           </Activity>
         </div>

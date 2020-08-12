@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import Modal from "../modal";
-import { PeopleFlex, PeopleDetails } from "../styles/profile";
+import { PeopleFlex, PeopleDetails, UserImage } from "../styles/profile";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -35,7 +35,7 @@ const Likes = () => {
             <Link key={item["Likes.id"]} to={`/profile/${item.username}`}>
               <PeopleFlex key={item.id}>
                 <div>
-                  <img src={item.avatar} />
+                  <UserImage src={item.avatar} />
                 </div>
                 <div style={{ width: "100%" }}>
                   <PeopleDetails>
