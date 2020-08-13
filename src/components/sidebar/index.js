@@ -10,11 +10,17 @@ const URL = process.env.REACT_APP_SERVER_URL;
 const SideBar = () => {
   const [whoFollow, setWhoFollow] = useState(null);
   const [isFollowDisabled, setFollowDisabled] = useState(false);
-  const userId = useSelector((state) => state.profile.user.id);
+  const user = useSelector((state) => state.profile.user);
+  const userId = user.id;
+  const token = user.token;
 
   useEffect(() => {
     (async () => {
-      const res = await axios.get(`${URL}/feed/who-follow?userId=${userId}`);
+      const res = await axios.get(`${URL}/feed/who-follow?userId=${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setWhoFollow(res.data.whoFollow);
     })();
   }, []);
@@ -22,11 +28,23 @@ const SideBar = () => {
   const handleFollow = async (e, idx) => {
     e.preventDefault();
     setFollowDisabled(true);
-    await axios.post(`${URL}/follow`, {
-      followedId: whoFollow[idx].id,
-      followerId: userId,
+    await axios.post(
+      `${URL}/follow`,
+      {
+        followedId: whoFollow[idx].id,
+        followerId: userId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const res = await axios.get(`${URL}/feed/who-follow?userId=${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
-    const res = await axios.get(`${URL}/feed/who-follow?userId=${userId}`);
     setWhoFollow(res.data.whoFollow);
     setFollowDisabled(false);
   };

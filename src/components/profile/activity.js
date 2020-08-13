@@ -19,7 +19,9 @@ const URL = process.env.REACT_APP_SERVER_URL;
 const Activity = (props) => {
   const [tweets, setTweets] = useState(null);
   const { username } = useParams();
-  const myId = useSelector((state) => state.profile.user.id);
+  const user = useSelector((state) => state.profile.user);
+  const myId = user.id;
+  const token = user.token;
   const { url, dataKey, header, handleHeaderText, feed } = props;
 
   useEffect(() => {
@@ -28,7 +30,11 @@ const Activity = (props) => {
   }, [url]);
 
   const getData = async () => {
-    const res = await axios.get(url);
+    const res = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     setTweets(res.data.tweets);
     handleHeaderText && handleHeaderText(`${res.data.tweets.length} ${header}`);
   };
@@ -99,11 +105,11 @@ const Activity = (props) => {
               style={{ justifyContent: "space-between", width: "80%" }}
             >
               <Comment
-              tweets={tweets}
-              tweet={tweet}
-              idx={idx}
-              myId={myId}
-              getData={getData}
+                tweets={tweets}
+                tweet={tweet}
+                idx={idx}
+                myId={myId}
+                getData={getData}
               />
 
               <Retweet

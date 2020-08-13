@@ -33,6 +33,7 @@ const SignIn = (props) => {
     try {
       setLoginDisabled(true);
       const login = await axios.post(`${URL}/user/login-user`, data);
+      console.log(login.data)
       setCredentialError({ user: null, password: null });
       setLoginDisabled(false);
       dispatch({ type: SET_USER, payload: login.data.user });
