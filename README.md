@@ -14,13 +14,13 @@ Backend Repository - [https://github.com/RisingGeek/twitter-clone-backend](https
 4. Like, Retweet
 5. View profile
 6. Search users in explore section
+7. Comment on tweet
 
 ## Upcoming Features
 
-1. Comment on tweet
-2. Notifications
-3. Live updations of like, retweet
-4. Route Authentication
+1. Notifications
+2. Live updations of like, retweet
+3. Route Authentication
 
 ## Run locally
 

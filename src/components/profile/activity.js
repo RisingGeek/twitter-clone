@@ -18,16 +18,19 @@ const URL = process.env.REACT_APP_SERVER_URL;
 
 const Activity = (props) => {
   const [tweets, setTweets] = useState(null);
+
   const { username } = useParams();
   const user = useSelector((state) => state.profile.user);
   const myId = user.id;
   const token = user.token;
+  const refresh = useSelector((state) => state.update.refresh);
+
   const { url, dataKey, header, handleHeaderText, feed } = props;
 
   useEffect(() => {
     // ComponentDidMount
     getData();
-  }, [url]);
+  }, [url, refresh]);
 
   const getData = async () => {
     const res = await axios.get(url, {

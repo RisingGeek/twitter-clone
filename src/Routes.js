@@ -20,17 +20,19 @@ const PageNotFound = React.lazy(() => import("./components/pageNotFound"));
 
 const Routes = () => {
   const withMenuBar = (WrappedComponent) => (props) => (
-    <Row>
-      <Col md={7} xs={5}>
-        <MenuBar />
-      </Col>
-      <Col md={9} xs={19}>
-        <WrappedComponent />
-      </Col>
-      <Col md={8} xs={0}>
-        <SideBar />
-      </Col>
-    </Row>
+    <React.Fragment>
+      <Row>
+        <Col md={7} xs={5}>
+          <MenuBar />
+        </Col>
+        <Col md={9} xs={19}>
+          <WrappedComponent />
+        </Col>
+        <Col md={8} xs={0}>
+          <SideBar />
+        </Col>
+      </Row>
+    </React.Fragment>
   );
 
   const withLikeModal = (WrappedComponent) => (props) => (
