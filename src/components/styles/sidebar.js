@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const SideBarBox = styled.div`
+  position: sticky;
+  top: 5%;
   background-color: rgb(245, 248, 250);
   width: 70%;
   margin: 10% 0 0 5%;

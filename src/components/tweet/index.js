@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams, useLocation, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import ProfileHeader from "../profileHeader";
@@ -104,10 +104,10 @@ const Tweet = (props) => {
             </div>
           </TweetText>
           <ActivityInfo>
-            <Link to={`${location.pathname}/retweets`}>
+            <Link to={`${location.pathname}/retweets`} replace>
               <h4>{tweet["Tweets.retweetsCount"]}</h4> <span>Retweets</span>
             </Link>
-            <Link to={`${location.pathname}/likes`}>
+            <Link to={`${location.pathname}/likes`} replace>
               <h4>{tweet["Tweets.likesCount"]}</h4> <span>Likes</span>
             </Link>
           </ActivityInfo>

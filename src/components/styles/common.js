@@ -8,6 +8,9 @@ export const ProfileCorner = styled.div`
 `;
 
 export const Header = styled.div`
+  position: sticky;
+  top: 0;
+  background-color: white;
   padding: 10px 15px;
   border-bottom: 1px solid rgb(230, 236, 240);
   h2 {

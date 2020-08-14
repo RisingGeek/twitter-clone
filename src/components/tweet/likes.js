@@ -21,7 +21,7 @@ const Likes = () => {
   }, []);
 
   const handleClose = () => {
-    history.push(`/${username}/status/${tweetId}`);
+    history.replace(`/${username}/status/${tweetId}`);
   };
 
   return (

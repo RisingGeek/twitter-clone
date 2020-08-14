@@ -79,7 +79,16 @@ const Profile = (props) => {
           </div>
         );
       case "media":
-        return <div>media</div>;
+        return (
+          <div>
+            <Activity
+              url={`${URL}/user/get-media?userId=${user.id}&myId=${myId}`}
+              dataKey="media"
+              header="Photos &amp; Videos"
+              handleHeaderText={handleHeaderText}
+            />
+          </div>
+        );
       case "likes":
         return (
           <div>
