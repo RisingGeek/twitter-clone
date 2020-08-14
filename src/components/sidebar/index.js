@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { SideBarBox, Header, Users, UserFlex, Button } from "../styles/sidebar";
 import Loading from "../loading";
+import { SET_UPDATE } from "../../redux/actions";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
 const SideBar = () => {
   const [whoFollow, setWhoFollow] = useState(null);
   const [isFollowDisabled, setFollowDisabled] = useState(false);
+
   const user = useSelector((state) => state.profile.user);
   const userId = user.id;
   const token = user.token;
+  const refresh = useSelector((state) => state.update.refresh);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
@@ -23,7 +27,7 @@ const SideBar = () => {
       });
       setWhoFollow(res.data.whoFollow);
     })();
-  }, []);
+  }, [refresh]);
 
   const handleFollow = async (e, idx) => {
     e.preventDefault();
@@ -47,6 +51,7 @@ const SideBar = () => {
     });
     setWhoFollow(res.data.whoFollow);
     setFollowDisabled(false);
+    dispatch({ type: SET_UPDATE });
   };
 
   if (!whoFollow) return <Loading />;

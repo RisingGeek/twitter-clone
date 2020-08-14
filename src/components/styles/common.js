@@ -70,3 +70,19 @@ export const Col = styled.div`
       max-width: ${(props.xs / 24) * 100}%;
     }`}
 `;
+
+export const Button = styled.button`
+  background: ${(props) => props.bg};
+  border: ${(props) => props.border || 'none'};
+  border-radius: 50px;
+  outline: none;
+  font-size: 15px;
+  font-weight: bold;
+  color: ${(props) => props.color};
+  text-align: center;
+  cursor: pointer;
+  padding: ${(props) => props.padding};
+  &:hover {
+    background: ${(props) => props.hoverBg};
+  }
+`;

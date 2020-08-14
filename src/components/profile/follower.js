@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { FollowFlex } from "../styles/profile";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
 const Follower = (props) => {
-  const { user } = props;
-  const {username} = useParams();
   const [response, setResponse] = useState(null);
+
+  const { user } = props;
+
+  const { username } = useParams();
+  const myId = useSelector((state) => state.profile.user.id);
+
   useEffect(() => {
     // ComponentDidMount
     (async () => {
-      const res = await axios.get(`${URL}/follow/details?id=${user.id}`);
+      const res = await axios.get(
+        `${URL}/follow/details?id=${user.id}&myId=${myId}`
+      );
       setResponse({
         followers: res.data.followers,
         following: res.data.following,

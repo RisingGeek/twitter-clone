@@ -7,6 +7,7 @@ const Notifications = () => {
       <Header>
         <h2>Notifications</h2>
       </Header>
+      <h2 style={{textAlign: 'center'}}>Coming soon!</h2>
     </ProfileCorner>
   );
 };

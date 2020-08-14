@@ -10,6 +10,7 @@ const BookMarks = () => {
         <h2>Bookmarks</h2>
         <p>@ {user.username}</p>
       </Header>
+      <h2 style={{textAlign: 'center'}}>Coming soon!</h2>
     </ProfileCorner>
   );
 };
