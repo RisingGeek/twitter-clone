@@ -62,8 +62,8 @@ export const ActivityInfo = styled.div`
 export const Activity = styled.div`
   display: flex;
   justify-content: space-around;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   div {
     cursor: pointer;
   }

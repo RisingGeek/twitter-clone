@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useLocation, useHistory } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import ProfileHeader from "../profileHeader";
@@ -12,12 +12,13 @@ import {
   Activity,
   UserImage,
 } from "../styles/tweet";
-import { ProfileCorner } from "../styles/common";
+import { ProfileCorner, ActivityBox, ActivityIcon } from "../styles/common";
 import { isImage, isVideo } from "../../media";
 import Loading from "../loading";
 import Modal from "../modal";
 import CommentModal from "./commentModal";
 import Comments from "./comments";
+import TweetActivity from "./activity";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -26,7 +27,9 @@ const Tweet = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { username, tweetId } = useParams();
 
-  const myId = useSelector((state) => state.profile.user.id);
+  const user = useSelector((state) => state.profile.user);
+  const myId = user.id;
+  const token = user.token;
 
   const location = useLocation();
 
@@ -41,6 +44,53 @@ const Tweet = (props) => {
 
   const handleClose = () => {
     setIsModalOpen(false);
+  };
+
+  const handleActivity = async (self, count, url) => {
+    if (tweet[self]) {
+      // unlike, unretweet
+      try {
+        await axios.delete(`${URL}/tweet/${url}/remove`, {
+          data: {
+            userId: myId,
+            tweetId: tweet["Tweets.id"],
+          },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setTweet({
+          ...tweet,
+          [count]: tweet[count] - 1,
+          [self]: false,
+        });
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    } else {
+      // like, retweet
+      try {
+        await axios.post(
+          `${URL}/tweet/${url}/add`,
+          {
+            userId: myId,
+            tweetId: tweet["Tweets.id"],
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setTweet({
+          ...tweet,
+          [count]: tweet[count] + 1,
+          [self]: true,
+        });
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    }
   };
 
   if (!tweet) return <Loading />;
@@ -113,27 +163,55 @@ const Tweet = (props) => {
           </ActivityInfo>
           <Activity>
             <div onClick={() => setIsModalOpen(true)}>
-              <Icon
-                d={commentPath}
-                width="18.75px"
-                height="18.75px"
-                fill="rgb(101, 119, 134)"
+              <ActivityBox
+                hoverColor="rgb(29,161,242)"
+                hoverBg="rgba(29,161,242,0.1)"
+                style={{
+                  border: "none",
+                  background: "transparent",
+                  outline: "none",
+                }}
+              >
+                <ActivityIcon>
+                  <Icon
+                    d={commentPath}
+                    width="18.75px"
+                    height="18.75px"
+                    fill="rgb(101, 119, 134)"
+                  />
+                </ActivityIcon>
+              </ActivityBox>
+            </div>
+            <div>
+              <TweetActivity
+                handleClick={() =>
+                  handleActivity(
+                    "selfRetweeted",
+                    "Tweets.retweetsCount",
+                    "retweet"
+                  )
+                }
+                hoverColor="rgb(23,191,99)"
+                hoverBg="rgba(23,191,99,0.1)"
+                path={retweetPath}
+                fill={
+                  tweet.selfRetweeted
+                    ? "rgb(23, 191, 99)"
+                    : "rgb(101, 119, 134)"
+                }
               />
             </div>
             <div>
-              <Icon
-                d={retweetPath}
-                width="18.75px"
-                height="18.75px"
-                fill="rgb(101, 119, 134)"
-              />
-            </div>
-            <div>
-              <Icon
-                d={likePath}
-                width="18.75px"
-                height="18.75px"
-                fill="rgb(101, 119, 134)"
+              <TweetActivity
+                handleClick={() =>
+                  handleActivity("selfLiked", "Tweets.likesCount", "like")
+                }
+                hoverColor="rgb(224,36,94)"
+                hoverBg="rgba(224,36,94,0.1)"
+                path={likePath}
+                fill={
+                  tweet.selfLiked ? "rgb(224, 36, 94)" : "rgb(101, 119, 134)"
+                }
               />
             </div>
           </Activity>
