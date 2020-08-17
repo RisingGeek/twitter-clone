@@ -35,7 +35,7 @@ const Profile = (props) => {
     (async () => {
       const res = await axios.get(`${URL}/user/get-user?username=${username}`);
       setUser(res.data);
-      console.log(res.data)
+      console.log(res.data);
     })();
   }, [username, refresh]);
 
@@ -178,7 +178,9 @@ const Profile = (props) => {
           ></Cover>
           <ImgFlex>
             <Avatar backgroundImage={user.avatar} />
-            <Button onClick={() => setIsModalOpen(true)}>Edit profile</Button>
+            {storeUser.id === user.id && (
+              <Button onClick={() => setIsModalOpen(true)}>Edit profile</Button>
+            )}
           </ImgFlex>
         </div>
         <Info>
