@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Follower from "./follower";
 import Icon from "../icon";
@@ -9,9 +9,12 @@ import Tabs from "../tabs";
 import Follow from "../follow/index";
 import Activity from "./activity";
 import Modal from "../modal";
+import EditProfileForm from "./editProfileForm";
 import { Info, Dates, Cover, Avatar, ImgFlex, Button } from "../styles/profile";
 import { ProfileCorner } from "../styles/common";
 import Loading from "../loading";
+import { toast } from "react-toastify";
+import { SET_USER, SET_UPDATE } from "../../redux/actions";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -19,18 +22,60 @@ const Profile = (props) => {
   const [user, setUser] = useState(null);
   const [headerText, setHeaderText] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSaveDisabled, setIsSaveDisabled] = useState(false);
+
   const { username, activity } = useParams();
-  const myId = useSelector((state) => state.profile.user.id);
+  const storeUser = useSelector((state) => state.profile.user);
+  const refresh = useSelector((state) => state.update.refresh);
+  const myId = storeUser.id;
+  const token = storeUser.token;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       const res = await axios.get(`${URL}/user/get-user?username=${username}`);
       setUser(res.data);
+      console.log(res.data)
     })();
-  }, [username]);
+  }, [username, refresh]);
 
   const handleHeaderText = (text) => {
     setHeaderText(text);
+  };
+
+  const handleSubmit = async (data) => {
+    setIsSaveDisabled(true);
+    const formData = new FormData();
+    formData.append("userId", user.id);
+    formData.append("firstname", data.firstname);
+    formData.append("lastname", data.lastname);
+    formData.append("dob", data.dob);
+    formData.append("bio", data.bio);
+    formData.append("location", data.location);
+    if (typeof data.avatar === "object") formData.append("avatar", data.avatar);
+    if (typeof data.cover === "object") formData.append("cover", data.cover);
+    const res = await axios.put(`${URL}/user/edit-user`, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setIsSaveDisabled(false);
+    setIsModalOpen(false);
+    toast("Profile was edited successfully");
+    dispatch({
+      type: SET_USER,
+      payload: {
+        ...storeUser,
+        firstname: data.firstname,
+        lastname: data.lastname,
+        dob: data.dob,
+        bio: data.bio,
+        location: data.location,
+        avatar: data.avatar,
+        cover: data.cover,
+      },
+    });
+    dispatch({ type: SET_UPDATE });
   };
 
   if (user === null) return <Loading />;
@@ -107,9 +152,16 @@ const Profile = (props) => {
     <React.Fragment>
       {isModalOpen && (
         <Modal
-          children={<div>ok</div>}
+          children={
+            <EditProfileForm
+              onSubmit={handleSubmit}
+              initialValues={user}
+              isSaveDisabled={isSaveDisabled}
+            />
+          }
           handleClose={() => setIsModalOpen(false)}
           padding="15px"
+          heading="Edit profile"
         />
       )}
       <ProfileCorner>
@@ -118,11 +170,14 @@ const Profile = (props) => {
           text={headerText}
         />
         <div>
-          <Cover></Cover>
+          <Cover
+            style={{
+              backgroundImage: `url(${user.cover})`,
+              backgroundSize: "cover",
+            }}
+          ></Cover>
           <ImgFlex>
-            <Avatar>
-              <img src={user.avatar} />
-            </Avatar>
+            <Avatar backgroundImage={user.avatar} />
             <Button onClick={() => setIsModalOpen(true)}>Edit profile</Button>
           </ImgFlex>
         </div>
@@ -131,6 +186,7 @@ const Profile = (props) => {
             {user.firstname} {user.lastname}
           </h2>
           <p>@{user.username}</p>
+          <p>{user.bio}</p>
           <Dates>
             <div>
               <Icon

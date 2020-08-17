@@ -104,18 +104,22 @@ export const Tab = styled.nav`
 export const Cover = styled.div`
   height: 150px;
   background-color: rgb(204, 214, 221);
+  img {
+    position: absolute;
+    width: 100%;
+    height: inherit;
+  }
 `;
 
 export const Avatar = styled.div`
   width: 30%;
   height: 30%;
-  img {
-    margin-top: -50%;
-    width: 100%;
-    height: 100%;
-    border: 4px solid rgb(255, 255, 255);
-    border-radius: 50%;
-  }
+  width: 116.85px;
+  height: 116.85px;
+  background-image: url(${(props) => props.backgroundImage});
+  background-size: cover;
+  border: 4px solid rgb(255, 255, 255);
+  border-radius: 50%;
 `;
 
 export const ImgFlex = styled.div`
@@ -124,6 +128,7 @@ export const ImgFlex = styled.div`
   align-items: baseline;
   padding-left: 15px;
   padding-right: 15px;
+  margin-top: -12%;
 `;
 
 export const Button = styled.button`

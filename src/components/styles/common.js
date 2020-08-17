@@ -76,7 +76,7 @@ export const Col = styled.div`
 
 export const Button = styled.button`
   background: ${(props) => props.bg};
-  border: ${(props) => props.border || 'none'};
+  border: ${(props) => props.border || "none"};
   border-radius: 50px;
   outline: none;
   font-size: 15px;
@@ -87,5 +87,21 @@ export const Button = styled.button`
   padding: ${(props) => props.padding};
   &:hover {
     background: ${(props) => props.hoverBg};
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+`;
+
+export const StyledInput = styled.input`
+  width: 100%;
+  border: none;
+  height: 50px;
+  border-bottom: 2px solid gray;
+  background: rgb(245, 248, 250);
+  ${(props) => props.margin && `margin: ${props.margin};`}
+  outline: none;
+  &:focus {
+    border-bottom: 2px solid rgb(29, 161, 242);
   }
 `;
