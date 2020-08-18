@@ -149,6 +149,7 @@ export const Button = styled.button`
 
 export const PeopleFlex = styled.div`
   display: flex;
+  flex-flow: row wrap;
   padding: ${(props) => (props.padding ? props.padding : "10px 15px")};
   color: rgb(0, 0, 0);
   border-bottom: 1px solid rgb(230, 236, 240);

@@ -9,7 +9,8 @@ import { SET_USER } from "../../redux/actions";
 import SignupForm from "./signupForm";
 import Modal from "../modal";
 import { logo, motto } from "./paths";
-import { Row, Col } from "../styles/common";
+// import { Row, Col } from "../styles/common";
+import {Row, Col} from 'antd';
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
