@@ -46,7 +46,7 @@ const Follow = () => {
         })),
       });
     })();
-  }, [refresh]);
+  }, []);
 
   const handleFollow = async (e, id, idx, follow) => {
     e.preventDefault();

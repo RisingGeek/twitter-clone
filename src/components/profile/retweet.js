@@ -22,7 +22,7 @@ const Retweet = (props) => {
     setRetweetDisabled(true);
     if (tweets[idx].selfRetweeted) {
       // unretweet
-      console.log("unretweet");
+      // console.log("unretweet");
       try {
         await axios.delete(`${URL}/tweet/retweet/remove`, {
           data: {
@@ -40,12 +40,11 @@ const Retweet = (props) => {
         getData && getData();
         setRetweetDisabled(false);
       } catch (err) {
-        console.log(err.response.data);
         setRetweetDisabled(false);
       }
     } else {
       // retweet
-      console.log("retweet");
+      // console.log("retweet");
       try {
         await axios.post(
           `${URL}/tweet/retweet/add`,
@@ -65,7 +64,6 @@ const Retweet = (props) => {
         ]);
         setRetweetDisabled(false);
       } catch (err) {
-        console.log(err.response.data);
         setRetweetDisabled(false);
       }
     }

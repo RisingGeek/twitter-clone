@@ -71,7 +71,7 @@ export const Button = styled.button`
 export const ModalBody = styled.div`
   padding: ${(props) => props.padding};
   overflow-y: auto;
-  height: 80vh;
+  max-height: 80vh;
 `;
 
 export const Flex = styled.div`

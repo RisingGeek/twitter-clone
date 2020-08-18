@@ -12,7 +12,6 @@ const Comments = () => {
   const [comments, setComments] = useState(null);
   const { tweetId } = useParams();
   const refresh = useSelector((state) => state.update.refresh);
-  console.log(refresh);
 
   useEffect(() => {
     (async () => {
@@ -20,7 +19,6 @@ const Comments = () => {
         `${URL}/tweet/comment/get-comments?tweetId=${tweetId}`
       );
       setComments(res.data.comments);
-      console.log(res.data);
     })();
   }, [refresh]);
 

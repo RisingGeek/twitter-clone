@@ -15,7 +15,6 @@ const Retweet = () => {
       const retweets = await axios.get(
         `${URL}/tweet/retweet/get-retweets?tweetId=${tweetId}`
       );
-      console.log(retweets);
       setRetweets(retweets.data.retweets);
     })();
   }, []);
@@ -53,7 +52,7 @@ const Retweet = () => {
                         </Link>
                       </object>
                     </div>
-                    <div>Following</div>
+                    {/* <div>Following</div> */}
                   </PeopleDetails>
                   <div>
                     <p>{item.bio}</p>

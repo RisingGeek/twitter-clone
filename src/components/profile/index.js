@@ -35,7 +35,6 @@ const Profile = (props) => {
     (async () => {
       const res = await axios.get(`${URL}/user/get-user?username=${username}`);
       setUser(res.data);
-      console.log(res.data);
     })();
   }, [username, refresh]);
 

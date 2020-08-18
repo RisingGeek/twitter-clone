@@ -13,6 +13,7 @@ import {
 } from "../styles/profile";
 import { isImage, isVideo } from "../../media";
 import Loading from "../loading";
+import Bookmark from "./bookmark";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -25,7 +26,14 @@ const Activity = (props) => {
   const token = user.token;
   const refresh = useSelector((state) => state.update.refresh);
 
-  const { url, dataKey, header, handleHeaderText, feed } = props;
+  const {
+    url,
+    dataKey,
+    header,
+    handleHeaderText,
+    feed,
+    removeBookmark,
+  } = props;
 
   useEffect(() => {
     // ComponentDidMount
@@ -130,6 +138,11 @@ const Activity = (props) => {
                 updateDetails={updateDetails}
                 myId={myId}
                 getData={getData}
+              />
+              <Bookmark
+                tweet={tweet}
+                myId={myId}
+                removeBookmark={removeBookmark}
               />
             </TweetDetails>
           </div>

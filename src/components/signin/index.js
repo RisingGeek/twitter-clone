@@ -33,7 +33,6 @@ const SignIn = (props) => {
     try {
       setLoginDisabled(true);
       const login = await axios.post(`${URL}/user/login-user`, data);
-      console.log(login.data)
       setCredentialError({ user: null, password: null });
       setLoginDisabled(false);
       dispatch({ type: SET_USER, payload: login.data.user });
@@ -45,7 +44,6 @@ const SignIn = (props) => {
   };
 
   const handleSignupSubmit = async (data) => {
-    console.log(data);
     try {
       setLoginDisabled(true);
       const signup = await axios.post(`${URL}/user/add-user`, {
@@ -61,7 +59,6 @@ const SignIn = (props) => {
       dispatch({ type: SET_USER, payload: signup.data.user });
       history.push("/home");
     } catch (err) {
-      console.log(err.response);
       setUserError(err.response.data.errors);
       setLoginDisabled(false);
     }

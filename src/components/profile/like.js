@@ -22,7 +22,7 @@ const Like = (props) => {
     setLikeDisabled(true);
     if (tweets[idx].selfLiked) {
       // unlike
-      console.log("unlike");
+      // console.log("unlike");
       try {
         await axios.delete(`${URL}/tweet/like/remove`, {
           data: {
@@ -40,12 +40,11 @@ const Like = (props) => {
         getData && getData();
         setLikeDisabled(false);
       } catch (err) {
-        console.log(err.response.data);
         setLikeDisabled(false);
       }
     } else {
       // like
-      console.log("like");
+      // console.log("like");
       try {
         await axios.post(
           `${URL}/tweet/like/add`,
@@ -65,7 +64,6 @@ const Like = (props) => {
         ]);
         setLikeDisabled(false);
       } catch (err) {
-        console.log(err.response.data);
         setLikeDisabled(false);
       }
     }

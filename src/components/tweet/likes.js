@@ -15,7 +15,6 @@ const Likes = () => {
       const likes = await axios.get(
         `${URL}/tweet/like/get-likes?tweetId=${tweetId}`
       );
-      console.log(likes);
       setLikes(likes.data.likes);
     })();
   }, []);
@@ -53,7 +52,7 @@ const Likes = () => {
                         </Link>
                       </object>
                     </div>
-                    <div>Following</div>
+                    {/* <div>Following</div> */}
                   </PeopleDetails>
                   <div>
                     <p>{item.bio}</p>
