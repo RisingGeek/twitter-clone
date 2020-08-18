@@ -11,16 +11,15 @@ Backend Repository - [https://github.com/RisingGeek/twitter-clone-backend](https
 1. Signup/Login
 2. Add Tweet
 3. Follow people
-4. Like, Retweet
+4. Like, Retweet, comment
 5. View profile
 6. Search users in explore section
-7. Comment on tweet
+7. Add bookmarks
 
 ## Upcoming Features
 
 1. Notifications
 2. Live updations of like, retweet
-3. Route Authentication
 
 ## Run locally
 

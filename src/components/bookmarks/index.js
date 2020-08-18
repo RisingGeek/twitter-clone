@@ -18,6 +18,7 @@ const BookMarks = () => {
         url={`${URL}/bookmarks?userId=${user.id}`}
         dataKey="bookmarks"
         removeBookmark
+        isBookmark
       />
     </ProfileCorner>
   );
