@@ -32,6 +32,13 @@ Backend Repository - [https://github.com/RisingGeek/twitter-clone-backend](https
 
 - `npm install && npm start`
 
+## Demo account
+
+```javascript
+username: demoaccount;
+password: 12345678;
+```
+
 ## Demo
 
 ![Feed](demo/feed.png)
