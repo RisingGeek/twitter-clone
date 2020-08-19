@@ -90,7 +90,7 @@ const MenuBar = () => {
           );
         })}
         <div style={{ marginBottom: "10px" }}></div>
-        {window.innerWidth > 768 ? (
+        {window.matchMedia("(max-width: 768px)") ? (
           <Button
             width="100%"
             padding="12px 30px"

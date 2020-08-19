@@ -9,6 +9,7 @@ import {
   PeopleFlex,
   TweetDetails,
   EmptyMsg,
+  User,
   UserImage,
 } from "../styles/profile";
 import { isImage, isVideo } from "../../media";
@@ -91,10 +92,10 @@ const Activity = (props) => {
         to={`/${tweet.username}/status/${tweet["Tweets.id"]}`}
       >
         <PeopleFlex hover>
-          <div>
+          <User>
             <UserImage src={tweet.avatar} />
-          </div>
-          <div style={{ width: "100%" }}>
+          </User>
+          <div style={{ width: "80%" }}>
             <TweetDetails>
               {/* <object> to hide nested <a> warning */}
               <object>
@@ -104,9 +105,18 @@ const Activity = (props) => {
                   </h3>
                 </Link>
               </object>
-              <p>@{tweet.username}</p>
+              <p
+                style={{
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  maxWidth: "18%",
+                }}
+              >
+                @{tweet.username}
+              </p>
               <span>
-                {date.toLocaleString("default", { month: "long" })}{" "}
+                {date.toLocaleString("default", { month: "short" })}{" "}
                 {date.getDate()}{" "}
                 {new Date().getFullYear() !== date.getFullYear() &&
                   date.getFullYear()}
@@ -123,9 +133,7 @@ const Activity = (props) => {
                 controls
               ></video>
             )}
-            <TweetDetails
-              style={{ justifyContent: "space-between", width: "80%" }}
-            >
+            <TweetDetails style={{ justifyContent: "space-between" }}>
               <Comment
                 tweets={tweets}
                 tweet={tweet}

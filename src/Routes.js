@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 // import { Row, Col } from "./components/styles/common";
-import {Row, Col} from 'antd';
+import { Row, Col } from "antd";
 const MenuBar = React.lazy(() => import("./components/menubar/index"));
 const SignIn = React.lazy(() => import("./components/signin/index"));
 const Home = React.lazy(() => import("./components/home/index"));
@@ -18,19 +18,19 @@ const Likes = React.lazy(() => import("./components/tweet/likes"));
 const Retweet = React.lazy(() => import("./components/tweet/retweets"));
 const SideBar = React.lazy(() => import("./components/sidebar/index"));
 const PageNotFound = React.lazy(() => import("./components/pageNotFound"));
-import PrivateRoute from './privateRoute';
+import PrivateRoute from "./privateRoute";
 
 const Routes = () => {
   const withMenuBar = (WrappedComponent) => (props) => (
     <React.Fragment>
       <Row>
-        <Col md={7} xs={5}>
+        <Col lg={7} md={5} xs={5}>
           <MenuBar />
         </Col>
-        <Col md={9} xs={19}>
+        <Col lg={9} md={19} xs={19}>
           <WrappedComponent />
         </Col>
-        <Col md={8} xs={0}>
+        <Col lg={8} md={0} xs={0}>
           <SideBar />
         </Col>
       </Row>
@@ -68,7 +68,10 @@ const Routes = () => {
         <PrivateRoute exact path="/" component={SignIn} homeAuthenticated />
         <PrivateRoute exact path="/home" component={withMenuBar(Home)} />
         <Route path="/explore" component={withMenuBar(Explore)} />
-        <PrivateRoute path="/notifications" component={withMenuBar(Notifications)} />
+        <PrivateRoute
+          path="/notifications"
+          component={withMenuBar(Notifications)}
+        />
         <PrivateRoute path="/messages" component={withMenuBar(Messages)} />
         <PrivateRoute path="/bookmarks" component={withMenuBar(BookMarks)} />
         <PrivateRoute path="/lists" component={withMenuBar(Lists)} />

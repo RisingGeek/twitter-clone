@@ -41,7 +41,6 @@ export const ActivityBox = styled.button`
 `;
 
 export const ActivityIcon = styled.div`
-  padding: 8px;
   border-radius: 50%;
 `;
 

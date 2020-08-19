@@ -21,7 +21,7 @@ export const Header = styled.header`
     display: flex;
     flex-direction: column;
   }
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     align-items: center;
   }
 `;
@@ -50,7 +50,7 @@ export const MenuTitle = styled.span`
   font-weight: bold;
   line-height: 1.3;
   text-transform: capitalize;
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;

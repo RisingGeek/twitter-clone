@@ -120,15 +120,21 @@ export const Avatar = styled.div`
   background-size: cover;
   border: 4px solid rgb(255, 255, 255);
   border-radius: 50%;
+  margin-top: -13%;
+  @media(max-width: 768px) {
+    margin-top: -10%;
+  }
+  @media(max-width: 576px) {
+    margin-top: -25%;
+  }
 `;
 
 export const ImgFlex = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   padding-left: 15px;
   padding-right: 15px;
-  margin-top: -12%;
 `;
 
 export const Button = styled.button`
@@ -149,12 +155,23 @@ export const Button = styled.button`
 
 export const PeopleFlex = styled.div`
   display: flex;
-  flex-flow: row wrap;
+  // flex-flow: row wrap;
   padding: ${(props) => (props.padding ? props.padding : "10px 15px")};
   color: rgb(0, 0, 0);
   border-bottom: 1px solid rgb(230, 236, 240);
   &:hover {
     background-color: rgb(245, 248, 250);
+  }
+`;
+
+export const User = styled.div`
+  width: 10%;
+  margin-right: 10px;
+  @media (max-width: 1024px) {
+    width: 15%;
+  }
+  @media (max-width: 576px) {
+    width: 20%;
   }
 `;
 
