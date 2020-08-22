@@ -10,6 +10,8 @@ const validate = (data) => {
   if (!data.firstname) errors.firstname = "Firstname required";
   if (!data.lastname) errors.lastname = "Lastname required";
   if (!data.dob) errors.dob = "Date of birth required";
+  if(!data.bio) data.bio="";
+  if(!data.location) data.location="";
   return errors;
 };
 
