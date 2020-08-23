@@ -14,6 +14,7 @@ const TweetModal = (props) => {
   const [preview, setPreview] = useState({ image: "", video: "", media: null });
 
   const user = useSelector((state) => state.profile.user);
+  const theme = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
   const { handleClose, rows } = props;
@@ -50,7 +51,7 @@ const TweetModal = (props) => {
 
   return (
     <React.Fragment>
-      <Flex>
+      <Flex bg={theme.bg} color={theme.color}>
         <div>
           <img
             src={user.avatar}
@@ -98,7 +99,12 @@ const TweetModal = (props) => {
               />
             </div>
             <div>
-              <Button onClick={addTweet} disabled={isTweetDisabled}>
+              <Button
+                onClick={addTweet}
+                disabled={isTweetDisabled}
+                defaultBg={theme.defaultBg}
+                darkBg={theme.darkBg}
+              >
                 Tweet
               </Button>
             </div>

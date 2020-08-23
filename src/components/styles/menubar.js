@@ -29,8 +29,7 @@ export const Header = styled.header`
 export const MenuItem = styled.div`
   ${(props) => props.logo && { display: "inline-block" }};
   margin-top: 10px;
-  color: #000000;
-
+  color: ${props => props.color};
   div {
     display: inline-block;
     padding: 10px;

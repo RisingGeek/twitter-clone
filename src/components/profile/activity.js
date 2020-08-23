@@ -26,6 +26,7 @@ const Activity = (props) => {
   const myId = user.id;
   const token = user.token;
   const refresh = useSelector((state) => state.update.refresh);
+  const theme = useSelector((state) => state.theme);
 
   const {
     url,
@@ -91,12 +92,12 @@ const Activity = (props) => {
         key={tweet["Tweets.id"]}
         to={`/${tweet.username}/status/${tweet["Tweets.id"]}`}
       >
-        <PeopleFlex hover>
+        <PeopleFlex hover border={theme.border} tweetHov={theme.tweetHov}>
           <User>
             <UserImage src={tweet.avatar} />
           </User>
           <div style={{ width: "80%" }}>
-            <TweetDetails>
+            <TweetDetails color={theme.color}>
               {/* <object> to hide nested <a> warning */}
               <object>
                 <Link to={`/profile/${tweet.username}`}>
@@ -122,7 +123,7 @@ const Activity = (props) => {
                   date.getFullYear()}
               </span>
             </TweetDetails>
-            <div>{tweet["Tweets.text"]}</div>
+            <div style={{color: theme.color}}>{tweet["Tweets.text"]}</div>
             {tweet["Tweets.media"] && isImage(tweet["Tweets.media"]) && (
               <img src={tweet["Tweets.media"]} style={{ width: "100%" }} />
             )}

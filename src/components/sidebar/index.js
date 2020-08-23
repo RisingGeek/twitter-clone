@@ -13,6 +13,7 @@ const SideBar = () => {
   const [isFollowDisabled, setFollowDisabled] = useState(false);
 
   const user = useSelector((state) => state.profile.user);
+  const theme = useSelector((state) => state.theme);
   const userId = user.id;
   const token = user.token;
   const refresh = useSelector((state) => state.update.refresh);
@@ -55,15 +56,19 @@ const SideBar = () => {
   };
 
   if (!whoFollow) return <Loading />;
+
   return (
-    <SideBarBox>
-      <Header>
+    <SideBarBox tweetHov={theme.tweetHov}>
+      <Header color={theme.color} border={theme.border}>
         <h2>Who to follow</h2>
       </Header>
       <Users>
+        {!whoFollow.length && (
+          <p style={{ textAlign: "center", color: theme.color }}>No more users left to follow</p>
+        )}
         {whoFollow.map((user, idx) => (
           <Link to={`/profile/${user.username}`} key={user.id}>
-            <UserFlex>
+            <UserFlex color={theme.color}>
               <img src={user.avatar} />
               <div>
                 <h3>

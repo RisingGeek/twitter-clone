@@ -5,12 +5,12 @@ import axios from "axios";
 import LoginForm from "./loginForm";
 import Icon from "../icon";
 import { LogoWrapper, Motto, Button, Flex } from "../styles/signin";
-import { SET_USER } from "../../redux/actions";
+import { SET_USER, SET_THEME } from "../../redux/actions";
 import SignupForm from "./signupForm";
 import Modal from "../modal";
 import { logo, motto } from "./paths";
 // import { Row, Col } from "../styles/common";
-import {Row, Col} from 'antd';
+import { Row, Col } from "antd";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -37,6 +37,7 @@ const SignIn = (props) => {
       setCredentialError({ user: null, password: null });
       setLoginDisabled(false);
       dispatch({ type: SET_USER, payload: login.data.user });
+      dispatch({ type: SET_THEME, payload: "default" });
       history.push("/home");
     } catch (err) {
       setCredentialError(err.response.data);

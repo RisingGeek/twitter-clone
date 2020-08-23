@@ -5,16 +5,17 @@ import Icon from "../icon";
 import Modal from "../modal";
 import { Header, MenuItem, MenuTitle, Button } from "../styles/menubar";
 import TweetModal from "./tweetModal";
-import { SET_USER } from "../../redux/actions";
+import { LOGOUT_USER } from "../../redux/actions";
 
 const MenuBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const user = useSelector((state) => state.profile.user);
+  const theme = useSelector(state => state.theme);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleLogout = () => {
-    dispatch({ type: SET_USER, payload: {} });
+    dispatch({ type: LOGOUT_USER });
     history.replace("/");
   };
 
@@ -80,9 +81,9 @@ const MenuBar = () => {
               activeClassName="selected"
               key={item}
             >
-              <MenuItem className="active">
+              <MenuItem className="active" color={theme.color}>
                 <div>
-                  <Icon d={paths[item]} width="26.25px" height="26.25px" />
+                  <Icon d={paths[item]} width="26.25px" height="26.25px" fill={theme.color} />
                   <MenuTitle>{item}</MenuTitle>
                 </div>
               </MenuItem>

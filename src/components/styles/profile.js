@@ -121,10 +121,10 @@ export const Avatar = styled.div`
   border: 4px solid rgb(255, 255, 255);
   border-radius: 50%;
   margin-top: -13%;
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     margin-top: -10%;
   }
-  @media(max-width: 576px) {
+  @media (max-width: 576px) {
     margin-top: -25%;
   }
 `;
@@ -155,12 +155,11 @@ export const Button = styled.button`
 
 export const PeopleFlex = styled.div`
   display: flex;
-  // flex-flow: row wrap;
   padding: ${(props) => (props.padding ? props.padding : "10px 15px")};
   color: rgb(0, 0, 0);
-  border-bottom: 1px solid rgb(230, 236, 240);
+  border-bottom: ${(props) => `1px solid ${props.border}`};
   &:hover {
-    background-color: rgb(245, 248, 250);
+    background-color: ${(props) => props.tweetHov};
   }
 `;
 
@@ -208,6 +207,7 @@ export const PeopleDetails = styled.div`
 export const TweetDetails = styled.div`
   display: flex;
   h3 {
+    color: ${(props) => props.color};
     font-size: 15px;
     font-weight: 700;
     margin: 0;
@@ -219,6 +219,9 @@ export const TweetDetails = styled.div`
     color: rgb(101, 119, 134);
     font-weight: 400;
     font-size: 15px;
+  }
+  span {
+    color: rgb(101, 119, 134);
   }
   h3:hover {
     text-decoration: underline;

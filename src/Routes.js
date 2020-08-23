@@ -1,5 +1,6 @@
 import React from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 // import { Row, Col } from "./components/styles/common";
 import { Row, Col } from "antd";
 const MenuBar = React.lazy(() => import("./components/menubar/index"));
@@ -21,9 +22,15 @@ const PageNotFound = React.lazy(() => import("./components/pageNotFound"));
 import PrivateRoute from "./privateRoute";
 
 const Routes = () => {
+  // const dispatch = useDispatch();
+  // React.useEffect(() => {
+  //   dispatch({ type: "SET_THEME", payload: "dark" });
+  // }, []);
+  const theme = useSelector((state) => state.theme);
+  console.log(theme);
   const withMenuBar = (WrappedComponent) => (props) => (
     <React.Fragment>
-      <Row>
+      <Row style={{ background: theme.bg }}>
         <Col lg={7} md={5} xs={5}>
           <MenuBar />
         </Col>

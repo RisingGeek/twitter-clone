@@ -3,20 +3,20 @@ import styled from "styled-components";
 export const SideBarBox = styled.div`
   position: sticky;
   top: 5%;
-  background-color: rgb(245, 248, 250);
+  background: ${(props) => props.tweetHov};
   width: 70%;
   margin: 10% 0 0 5%;
   border-radius: 15px;
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     width: 90%;
   }
 `;
 
 export const Header = styled.div`
   padding: 10px 15px;
-  border-bottom: 1px solid rgb(230, 236, 240);
+  border-bottom: ${(props) => `1px solid ${props.border}`};
   h2 {
-    color: rgb(20, 23, 26);
+    color: ${(props) => props.color};
     font-size: 19px;
     font-weight: 800;
     margin: 0;
@@ -43,6 +43,7 @@ export const UserFlex = styled.div`
     margin: 0;
   }
   h3 {
+    color: ${(props) => props.color};
     font-size: 15px;
     font-weight: 700;
     line-height: 19.68px;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const ProfileCorner = styled.div`
-  border-left: 1px solid rgb(230, 236, 240);
-  border-right: 1px solid rgb(230, 236, 240);
+  border-left: ${(props) => `1px solid ${props.border}`};
+  border-right: ${(props) => `1px solid ${props.border}`};
   min-height: 100vh;
   padding-bottom: 20%;
 `;
@@ -10,11 +10,12 @@ export const ProfileCorner = styled.div`
 export const Header = styled.div`
   position: sticky;
   top: 0;
-  background-color: white;
+  background: ${(props) => props.bg};
   padding: 10px 15px;
-  border-bottom: 1px solid rgb(230, 236, 240);
+  border-bottom: ${(props) => `1px solid ${props.border}`};
   h2 {
     font-weight: 800;
+    color: ${(props) => props.color};
   }
   p {
     line-height: 13px;
@@ -102,5 +103,14 @@ export const StyledInput = styled.input`
   outline: none;
   &:focus {
     border-bottom: 2px solid rgb(29, 161, 242);
+  }
+`;
+
+export const FileInput = styled.div`
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  &:hover {
+    background-color: ${(props) => props.opaqueBg};
   }
 `;

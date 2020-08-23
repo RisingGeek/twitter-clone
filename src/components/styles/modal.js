@@ -8,16 +8,16 @@ export const ModalWrapper = styled.div`
   width: 100%;
   height: 100%;
   padding-top: 4vh;
-  background-color: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.4);
 `;
 
 export const ModalContent = styled.div`
   position: relative;
   margin: auto;
   width: 40%;
-  background-color: rgb(255, 255, 255);
+  background: ${(props) => props.bg};
   border-radius: 15px;
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     width: 80%;
   }
 `;
@@ -26,7 +26,7 @@ export const ModalHeader = styled.div`
   display: flex;
   align-items: center;
   padding: 13px 8px;
-  border-bottom: 1px solid rgb(204, 214, 221);
+  border-bottom: ${(props) => `1px solid ${props.border}`};
   h2 {
     margin-bottom: 0;
     font-size: 19px;
@@ -50,7 +50,7 @@ export const CloseButton = styled.button`
   }
 `;
 export const Button = styled.button`
-  background-color: rgb(29, 161, 242);
+  background-color: ${(props) => props.defaultBg};
   color: rgb(255, 255, 255);
   border-radius: 50px;
   border: none;
@@ -61,7 +61,7 @@ export const Button = styled.button`
   padding: 8px 15px;
   cursor: pointer;
   &:hover {
-    background-color: rgb(26, 145, 218);
+    background-color: ${(props) => props.darkBg};
   }
   &:disabled {
     opacity: 0.5;
@@ -80,12 +80,14 @@ export const Flex = styled.div`
     margin-right: 8px;
   }
   textarea {
+    background: ${(props) => props.bg};
+    caret-color: ${(props) => props.color};
     width: 100%;
     outline: none;
     border: none;
     resize: none;
     font-size: 16px;
     font-weight: 500;
-    color: rgb(0, 0, 0);
+    color: ${(props) => props.color};
   }
 `;

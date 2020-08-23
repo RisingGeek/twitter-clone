@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { LoadingIcon } from "./styles/loading";
 
 const Loading = () => {
+  const theme = useSelector((state) => state.theme);
   return (
     <LoadingIcon>
       <svg viewBox="0 0 32 32">
@@ -11,7 +13,7 @@ const Loading = () => {
           fill="none"
           r="14"
           strokeWidth="4"
-          style={{ stroke: "rgb(29, 161, 242)", opacity: "0.2" }}
+          style={{ stroke: theme.defaultBg, opacity: "0.2" }}
         ></circle>
         <circle
           cx="16"
@@ -20,7 +22,7 @@ const Loading = () => {
           r="14"
           strokeWidth="4"
           style={{
-            stroke: "rgb(29, 161, 242)",
+            stroke: theme.defaultBg,
             strokeDasharray: 80,
             strokeDashoffset: 60,
           }}
