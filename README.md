@@ -18,8 +18,9 @@ Backend Repository - [https://github.com/RisingGeek/twitter-clone-backend](https
 
 ## Upcoming Features
 
-1. Notifications
-2. Live updations of like, retweet
+1. Dark mode
+2. Notifications
+3. Live updations of like, retweet
 
 ## Run locally
 
