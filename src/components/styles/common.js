@@ -18,6 +18,7 @@ export const Header = styled.div`
     color: ${(props) => props.color};
   }
   p {
+    color: ${(props) => props.para};
     line-height: 13px;
   }
   * {

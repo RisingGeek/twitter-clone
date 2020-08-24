@@ -11,10 +11,12 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   padding: 10px 15px;
+  background: ${(props) => props.bg};
   div {
     margin-right: 10px;
   }
   h2 {
+    color: ${(props) => props.color};
     line-height: 1.3;
     margin-bottom: 0;
     font-size: 19px;
@@ -42,6 +44,7 @@ export const Info = styled.div`
   padding-left: 15px;
   padding-right: 15px;
   h2 {
+    color: ${(props) => props.color};
     line-height: 1.3;
     margin-bottom: 0;
     font-size: 19px;
@@ -85,7 +88,7 @@ export const FollowFlex = styled.div`
 export const Tab = styled.nav`
   display: flex;
   text-align: center;
-  border-bottom: 1.8px solid rgb(230, 236, 240);
+  border-bottom: ${(props) => `1.8px solid ${props.border}`};
   div {
     padding: 15px;
   }
@@ -103,7 +106,7 @@ export const Tab = styled.nav`
 
 export const Cover = styled.div`
   height: 150px;
-  background-color: rgb(204, 214, 221);
+  background: ${(props) => props.bg};
   img {
     position: absolute;
     width: 100%;
@@ -118,7 +121,7 @@ export const Avatar = styled.div`
   height: 116.85px;
   background-image: url(${(props) => props.backgroundImage});
   background-size: cover;
-  border: 4px solid rgb(255, 255, 255);
+  border: ${(props) => `4px solid ${props.bg}`};
   border-radius: 50%;
   margin-top: -13%;
   @media (max-width: 768px) {
@@ -138,7 +141,7 @@ export const ImgFlex = styled.div`
 `;
 
 export const Button = styled.button`
-  background: rgb(255, 255, 255);
+  background: ${(props) => props.bg};
   border: 1px solid rgb(29, 161, 242);
   border-radius: 50px;
   font-size: 15px;

@@ -27,6 +27,7 @@ const Profile = (props) => {
   const { username, activity } = useParams();
   const storeUser = useSelector((state) => state.profile.user);
   const refresh = useSelector((state) => state.update.refresh);
+  const theme = useSelector((state) => state.theme);
   const myId = storeUser.id;
   const token = storeUser.token;
   const dispatch = useDispatch();
@@ -163,26 +164,29 @@ const Profile = (props) => {
           heading="Edit profile"
         />
       )}
-      <ProfileCorner>
+      <ProfileCorner border={theme.border}>
         <ProfileHeader
           heading={`${user.firstname} ${user.lastname}`}
           text={headerText}
         />
         <div>
           <Cover
+            bg={theme.border}
             style={{
               backgroundImage: `url(${user.cover})`,
               backgroundSize: "cover",
             }}
           ></Cover>
           <ImgFlex>
-            <Avatar backgroundImage={user.avatar} />
+            <Avatar backgroundImage={user.avatar} bg={theme.bg} />
             {storeUser.id === user.id && (
-              <Button onClick={() => setIsModalOpen(true)}>Edit profile</Button>
+              <Button bg={theme.bg} onClick={() => setIsModalOpen(true)}>
+                Edit profile
+              </Button>
             )}
           </ImgFlex>
         </div>
-        <Info>
+        <Info color={theme.color}>
           <h2>
             {user.firstname} {user.lastname}
           </h2>

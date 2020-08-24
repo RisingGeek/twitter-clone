@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import Icon from "../icon";
 import { Search, AutoComplete } from "../styles/explore";
@@ -11,6 +12,8 @@ const URL = process.env.REACT_APP_SERVER_URL;
 const Explore = () => {
   const [search, setSearch] = useState("");
   const [users, setUsers] = useState(null);
+
+  const theme = useSelector((state) => state.theme);
 
   useEffect(() => {
     const onDocumentClick = () => {
@@ -34,13 +37,14 @@ const Explore = () => {
   };
 
   return (
-    <ProfileCorner>
+    <ProfileCorner border={theme.border}>
       <div style={{ padding: "10px 15px" }}>
-        <Search>
+        <Search bg={theme.bg}>
           <Icon d={searchIcon} width="40px" height="18.75px" />
           <input
             placeholder="Search Twitter"
             value={search}
+            style={{caretColor: theme.color, color: theme.color}}
             onChange={handleSearch}
           />
         </Search>
@@ -85,7 +89,9 @@ const Explore = () => {
           </AutoComplete>
         )}
         {!users && (
-          <h2 style={{ textAlign: "center", fontWeight: 700 }}>
+          <h2
+            style={{ textAlign: "center", fontWeight: 700, color: theme.color }}
+          >
             Search for users
           </h2>
         )}

@@ -7,10 +7,11 @@ const URL = process.env.REACT_APP_SERVER_URL;
 
 const BookMarks = () => {
   const user = useSelector((state) => state.profile.user);
+  const theme = useSelector((state) => state.theme);
 
   return (
-    <ProfileCorner>
-      <Header>
+    <ProfileCorner border={theme.border}>
+      <Header bg={theme.bg} color={theme.color} para={theme.para} border={theme.border}>
         <h2>Bookmarks</h2>
         <p>@ {user.username}</p>
       </Header>

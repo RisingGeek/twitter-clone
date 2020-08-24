@@ -1,10 +1,12 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Tab } from "./styles/profile";
 
 const Tabs = (props) => {
   // TabList -> [{path,name,title}]
   const { tabList } = props;
+  const theme = useSelector((state) => state.theme);
   const { username, activity } = useParams();
   const activeStyle = {
     borderBottom: "2px solid rgb(29,161,242)",
@@ -12,7 +14,7 @@ const Tabs = (props) => {
   };
 
   return (
-    <Tab>
+    <Tab border={theme.border}>
       {tabList.map((tab) => {
         const to =
           tab.name === "tweets"
@@ -24,7 +26,8 @@ const Tabs = (props) => {
             to={to}
             replace={true}
             style={
-              activity === tab.name || (activity == undefined && tab.name === "tweets")
+              activity === tab.name ||
+              (activity == undefined && tab.name === "tweets")
                 ? activeStyle
                 : {}
             }

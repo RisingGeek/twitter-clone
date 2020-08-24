@@ -14,7 +14,7 @@ export const Search = styled.div`
     outline: none;
   }
   &:focus-within {
-    background-color: rgb(255, 255, 255);
+    background-color: ${props => props.bg};
     border: 1px solid rgb(29, 161, 242);
     svg {
       fill: rgb(29, 161, 242);

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { FollowFlex } from "../styles/profile";
+import theme from "../../redux/reducers/theme";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -13,6 +14,7 @@ const Follower = (props) => {
 
   const { username } = useParams();
   const myId = useSelector((state) => state.profile.user.id);
+  const theme = useSelector((state) => state.theme);
 
   useEffect(() => {
     // ComponentDidMount
@@ -34,14 +36,20 @@ const Follower = (props) => {
       <div>
         <Link to={`/profile/${username}/following`}>
           <p>
-            <span>{response.following.length}</span> <span>Following</span>
+            <span style={{ color: theme.color }}>
+              {response.following.length}
+            </span>{" "}
+            <span>Following</span>
           </p>
         </Link>
       </div>
       <div>
         <Link to={`/profile/${username}/followers`}>
           <p>
-            <span>{response.followers.length}</span> <span>Followers</span>
+            <span style={{ color: theme.color }}>
+              {response.followers.length}
+            </span>{" "}
+            <span>Followers</span>
           </p>
         </Link>
       </div>

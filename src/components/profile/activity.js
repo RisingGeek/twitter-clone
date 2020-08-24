@@ -70,7 +70,7 @@ const Activity = (props) => {
   if (isBookmark && !tweets.length)
     return (
       <div style={{ textAlign: "center", padding: "40px 0px" }}>
-        <h3 style={{ fontSize: "19px", fontWeight: 700 }}>
+        <h3 style={{ fontSize: "19px", fontWeight: 700, color: theme.color }}>
           You haven’t added any Tweets to your Bookmarks yet
         </h3>
         <p>When you do, they’ll show up here.</p>

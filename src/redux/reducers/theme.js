@@ -10,6 +10,7 @@ const themes = {
     opaqueBg: "rgba(29, 161, 242, 0.1)",
     border: "rgb(230, 236, 240)",
     tweetHov: "rgb(245, 248, 250)",
+    para: "rgb(101, 119, 134)",
   },
   dark: {
     bg: "rgb(0,0,0)",
@@ -20,6 +21,7 @@ const themes = {
     opaqueBg: "rgba(29, 161, 242, 0.1)",
     border: "rgb(47, 51, 54)",
     tweetHov: "rgb(21, 24, 28)",
+    para: "rgb(110, 118, 125)",
   },
 };
 
