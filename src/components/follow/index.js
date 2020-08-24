@@ -23,6 +23,7 @@ const Follow = () => {
   const { username, activity } = useParams();
   const user = useSelector((state) => state.profile.user);
   const refresh = useSelector((state) => state.update.refresh);
+  const theme = useSelector((state) => state.theme);
   const myId = user.id;
   const token = user.token;
   const dispatch = useDispatch();
@@ -109,7 +110,7 @@ const Follow = () => {
   if (!userData) return <Loading />;
 
   return (
-    <ProfileCorner>
+    <ProfileCorner border={theme.border}>
       <ProfileHeader
         heading={`${userData.user.firstname} ${userData.user.lastname}`}
         text={`@${userData.user.username}`}
@@ -125,7 +126,11 @@ const Follow = () => {
         <div>
           {userData[activity].map((item, idx) => (
             <Link key={item.id} to={`/profile/${item.username}`}>
-              <PeopleFlex key={item.id}>
+              <PeopleFlex
+                key={item.id}
+                border={theme.border}
+                tweetHov={theme.tweetHov}
+              >
                 <div>
                   <UserImage src={item.avatar} />
                 </div>
@@ -134,7 +139,7 @@ const Follow = () => {
                     <div>
                       <object>
                         <Link to={`/profile/${item.username}`}>
-                          <h3>
+                          <h3 style={{ color: theme.color }}>
                             {item.firstname} {item.lastname}
                           </h3>
                         </Link>
@@ -180,7 +185,7 @@ const Follow = () => {
                     )}
                   </PeopleDetails>
                   <div>
-                    <p>{item.bio}</p>
+                    <p style={{color: theme.color}}>{item.bio}</p>
                   </div>
                 </div>
               </PeopleFlex>

@@ -4,7 +4,7 @@ export const HeaderWrapper = styled.div`
   position: sticky;
   background-color: white;
   top: 0;
-  border-bottom: 1px solid rgb(230, 236, 240);
+  border-bottom: ${(props) => `1px solid ${props.border}`};
 `;
 
 export const Header = styled.header`
@@ -187,7 +187,7 @@ export const UserImage = styled.img`
 export const PeopleDetails = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   h3 {
     font-size: 15px;
     font-weight: 700;
