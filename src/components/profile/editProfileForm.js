@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { Cover, Avatar, ImgFlex } from "../styles/profile";
 import { StyledInput, Button } from "../styles/common";
@@ -10,21 +11,37 @@ const validate = (data) => {
   if (!data.firstname) errors.firstname = "Firstname required";
   if (!data.lastname) errors.lastname = "Lastname required";
   if (!data.dob) errors.dob = "Date of birth required";
-  if(!data.bio) data.bio="";
-  if(!data.location) data.location="";
+  if (!data.bio) data.bio = "";
+  if (!data.location) data.location = "";
   return errors;
 };
 
-const Input = ({ input, type, placeholder, meta: { touched, error } }) => (
-  <React.Fragment>
-    <StyledInput {...input} type={type} placeholder={placeholder} />
-    {touched && error && <Error>{error}</Error>}
-  </React.Fragment>
-);
+const Input = ({
+  input,
+  type,
+  placeholder,
+  meta: { touched, error },
+}) => {
+  const theme = useSelector((state) => state.theme);
+  return (
+    <React.Fragment>
+      <StyledInput
+        {...input}
+        type={type}
+        placeholder={placeholder}
+        inputBg={theme.tweetHov}
+        color={theme.color}
+      />
+      {touched && error && <Error>{error}</Error>}
+    </React.Fragment>
+  );
+};
 
 let EditProfileForm = (props) => {
   const [cover, setCover] = useState(props.initialValues.cover);
   const [avatar, setAvatar] = useState(props.initialValues.avatar);
+
+  const theme = useSelector((state) => state.theme);
 
   const { isSaveDisabled } = props;
 
@@ -51,6 +68,7 @@ let EditProfileForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <Cover
+        bg={theme.border}
         style={{
           display: "flex",
           justifyContent: "center",
@@ -88,7 +106,11 @@ let EditProfileForm = (props) => {
         />
       </Cover>
       <ImgFlex>
-        <Avatar style={{ position: "relative" }} backgroundImage={avatar}>
+        <Avatar
+          style={{ position: "relative" }}
+          backgroundImage={avatar}
+          bg={theme.bg}
+        >
           <Field
             type="file"
             name="avatar"

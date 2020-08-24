@@ -56,6 +56,9 @@ export const Info = styled.div`
     font-weight: 400;
     color: rgb(101, 119, 134);
   }
+  p {
+    margin-bottom: 0;
+  }
 `;
 
 export const Dates = styled.div`

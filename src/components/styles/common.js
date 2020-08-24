@@ -99,7 +99,9 @@ export const StyledInput = styled.input`
   border: none;
   height: 50px;
   border-bottom: 2px solid gray;
-  background: rgb(245, 248, 250);
+  background: ${(props) => props.inputBg};
+  caret-color: ${(props) => props.color};
+  color: ${(props) => props.color};
   ${(props) => props.margin && `margin: ${props.margin};`}
   outline: none;
   &:focus {
