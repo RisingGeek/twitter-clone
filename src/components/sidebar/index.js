@@ -20,14 +20,24 @@ const SideBar = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const cancelToken = axios.CancelToken;
+    const source = cancelToken.source();
     (async () => {
-      const res = await axios.get(`${URL}/feed/who-follow?userId=${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setWhoFollow(res.data.whoFollow);
+      try {
+        const res = await axios.get(`${URL}/feed/who-follow?userId=${userId}`, {
+          cancelToken: source.token,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setWhoFollow(res.data.whoFollow);
+      } catch (err) {
+        console.log(err);
+      }
     })();
+    return () => {
+      source.cancel();
+    };
   }, [refresh]);
 
   const handleFollow = async (e, idx) => {
@@ -64,7 +74,9 @@ const SideBar = () => {
       </Header>
       <Users>
         {!whoFollow.length && (
-          <p style={{ textAlign: "center", color: theme.color }}>No more users left to follow</p>
+          <p style={{ textAlign: "center", color: theme.color }}>
+            No more users left to follow
+          </p>
         )}
         {whoFollow.map((user, idx) => (
           <Link to={`/profile/${user.username}`} key={user.id}>

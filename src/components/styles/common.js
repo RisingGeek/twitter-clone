@@ -29,6 +29,10 @@ export const Header = styled.div`
 export const ActivityBox = styled.button`
   display: flex;
   align-items: center;
+  div {
+    display: flex;
+    padding: ${(props) => props.noPadding || "15%"};
+  }
   &:hover {
     div {
       background-color: ${(props) => props.hoverBg};

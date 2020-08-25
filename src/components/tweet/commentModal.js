@@ -14,6 +14,7 @@ const CommentModal = (props) => {
   const [preview, setPreview] = useState({ image: "", video: "", media: null });
 
   const user = useSelector((state) => state.profile.user);
+  const theme = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
   const { tweetId } = useParams();
@@ -99,7 +100,12 @@ const CommentModal = (props) => {
             />
           </div>
           <div>
-            <Button onClick={addComment} disabled={isCommentDisabled}>
+            <Button
+              onClick={addComment}
+              disabled={isCommentDisabled}
+              defaultBg={theme.defaultBg}
+              darkBg={theme.darkBg}
+            >
               Reply
             </Button>
           </div>

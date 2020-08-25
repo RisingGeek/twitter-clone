@@ -52,6 +52,7 @@ export const ActivityInfo = styled.div`
     text-decoration-color: rgb(0, 0, 0);
   }
   h4 {
+    color: ${(props) => props.color};
     display: inline;
   }
   span {
@@ -62,8 +63,8 @@ export const ActivityInfo = styled.div`
 export const Activity = styled.div`
   display: flex;
   justify-content: space-around;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 3%;
+  padding-bottom: 3%;
   div {
     cursor: pointer;
   }

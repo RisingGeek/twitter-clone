@@ -40,17 +40,28 @@ const Activity = (props) => {
 
   useEffect(() => {
     // ComponentDidMount
-    getData();
+    const cancelToken = axios.CancelToken;
+    const source = cancelToken.source();
+    getData(source);
+    return () => {
+      source.cancel();
+    };
   }, [url, refresh]);
 
-  const getData = async () => {
-    const res = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    setTweets(res.data.tweets);
-    handleHeaderText && handleHeaderText(`${res.data.tweets.length} ${header}`);
+  const getData = async (source) => {
+    try {
+      const res = await axios.get(url, {
+        cancelToken: source.token,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setTweets(res.data.tweets);
+      handleHeaderText &&
+        handleHeaderText(`${res.data.tweets.length} ${header}`);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const updateDetails = (idx, newState) => {
@@ -123,7 +134,7 @@ const Activity = (props) => {
                   date.getFullYear()}
               </span>
             </TweetDetails>
-            <div style={{color: theme.color}}>{tweet["Tweets.text"]}</div>
+            <div style={{ color: theme.color }}>{tweet["Tweets.text"]}</div>
             {tweet["Tweets.media"] && isImage(tweet["Tweets.media"]) && (
               <img src={tweet["Tweets.media"]} style={{ width: "100%" }} />
             )}

@@ -2,6 +2,7 @@ import { SET_THEME } from "../actions";
 
 const themes = {
   default: {
+    mode: "default",
     bg: "rgb(255,255,255)",
     color: "rgb(0,0,0)",
     lightBg: "rgba(29,161,242,1)",
@@ -13,6 +14,7 @@ const themes = {
     para: "rgb(101, 119, 134)",
   },
   dark: {
+    mode: "dark",
     bg: "rgb(0,0,0)",
     color: "rgb(255,255,255)",
     lightBg: "rgba(29,161,242,1)",

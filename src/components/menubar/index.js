@@ -5,12 +5,13 @@ import Icon from "../icon";
 import Modal from "../modal";
 import { Header, MenuItem, MenuTitle, Button } from "../styles/menubar";
 import TweetModal from "./tweetModal";
-import { LOGOUT_USER } from "../../redux/actions";
+import { LOGOUT_USER, SET_THEME } from "../../redux/actions";
 
 const MenuBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const user = useSelector((state) => state.profile.user);
-  const theme = useSelector(state => state.theme);
+  const theme = useSelector((state) => state.theme);
+  const mode = theme.mode;
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -45,8 +46,12 @@ const MenuBar = () => {
     profile: [
       "M12 11.816c1.355 0 2.872-.15 3.84-1.256.814-.93 1.078-2.368.806-4.392-.38-2.825-2.117-4.512-4.646-4.512S7.734 3.343 7.354 6.17c-.272 2.022-.008 3.46.806 4.39.968 1.107 2.485 1.256 3.84 1.256zM8.84 6.368c.162-1.2.787-3.212 3.16-3.212s2.998 2.013 3.16 3.212c.207 1.55.057 2.627-.45 3.205-.455.52-1.266.743-2.71.743s-2.255-.223-2.71-.743c-.507-.578-.657-1.656-.45-3.205zm11.44 12.868c-.877-3.526-4.282-5.99-8.28-5.99s-7.403 2.464-8.28 5.99c-.172.692-.028 1.4.395 1.94.408.52 1.04.82 1.733.82h12.304c.693 0 1.325-.3 1.733-.82.424-.54.567-1.247.394-1.94zm-1.576 1.016c-.126.16-.316.246-.552.246H5.848c-.235 0-.426-.085-.552-.246-.137-.174-.18-.412-.12-.654.71-2.855 3.517-4.85 6.824-4.85s6.114 1.994 6.824 4.85c.06.242.017.48-.12.654z",
     ],
-    // more: ["M16.5 10.25c-.965 0-1.75.787-1.75 1.75s.784 1.75 1.75 1.75c.964 0 1.75-.786 1.75-1.75s-.786-1.75-1.75-1.75zm0 2.5c-.414 0-.75-.336-.75-.75 0-.413.337-.75.75-.75s.75.336.75.75c0 .413-.336.75-.75.75zm-4.5-2.5c-.966 0-1.75.787-1.75 1.75s.785 1.75 1.75 1.75 1.75-.786 1.75-1.75-.784-1.75-1.75-1.75zm0 2.5c-.414 0-.75-.336-.75-.75 0-.413.337-.75.75-.75s.75.336.75.75c0 .413-.336.75-.75.75zm-4.5-2.5c-.965 0-1.75.787-1.75 1.75s.785 1.75 1.75 1.75c.964 0 1.75-.786 1.75-1.75s-.787-1.75-1.75-1.75zm0 2.5c-.414 0-.75-.336-.75-.75 0-.413.337-.75.75-.75s.75.336.75.75c0 .413-.336.75-.75.75z", "M12 22.75C6.072 22.75 1.25 17.928 1.25 12S6.072 1.25 12 1.25 22.75 6.072 22.75 12 17.928 22.75 12 22.75zm0-20C6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25s9.25-4.15 9.25-9.25S17.1 2.75 12 2.75z"]
   };
+  const dark = [
+    "M15.692 11.205l6.383-7.216c.45-.45.45-1.18 0-1.628-.45-.45-1.178-.45-1.627 0l-7.232 6.402s.782.106 1.595.93c.548.558.882 1.51.882 1.51z",
+    "M17.45 22.28H3.673c-1.148 0-2.083-.946-2.083-2.11V7.926c0-1.165.934-2.112 2.082-2.112h5.836c.414 0 .75.336.75.75s-.336.75-.75.75H3.672c-.32 0-.583.274-.583.612V20.17c0 .336.26.61.582.61h13.78c.32 0 .583-.273.583-.61v-6.28c0-.415.336-.75.75-.75s.75.335.75.75v6.28c0 1.163-.934 2.11-2.084 2.11z",
+    "M8.18 16.99c-.19.154-.476.032-.504-.21-.137-1.214-.234-4.053 1.483-5.943.908-1 3.02-1.52 4.475-.198s1.14 3.473.23 4.473c-2.07 2.15-3.428.058-5.686 1.878z",
+  ];
 
   const handleClose = () => {
     setIsModalOpen(false);
@@ -83,13 +88,39 @@ const MenuBar = () => {
             >
               <MenuItem className="active" color={theme.color}>
                 <div>
-                  <Icon d={paths[item]} width="26.25px" height="26.25px" fill={theme.color} />
+                  <Icon
+                    d={paths[item]}
+                    width="26.25px"
+                    height="26.25px"
+                    fill={theme.color}
+                  />
                   <MenuTitle>{item}</MenuTitle>
                 </div>
               </MenuItem>
             </NavLink>
           );
         })}
+        <MenuItem color={theme.color}>
+          <div>
+            <Icon
+              d={dark}
+              width="26.25px"
+              height="26.25px"
+              fill={theme.color}
+            />
+            <MenuTitle
+              style={{ cursor: "pointer" }}
+              onClick={() =>
+                dispatch({
+                  type: SET_THEME,
+                  payload: mode === "dark" ? "default" : "dark",
+                })
+              }
+            >
+              {mode === "dark" ? "Light" : "Dark"} mode
+            </MenuTitle>
+          </div>
+        </MenuItem>
         <div style={{ marginBottom: "10px" }}></div>
         {window.matchMedia("(max-width: 768px)") ? (
           <Button

@@ -28,6 +28,7 @@ const Tweet = (props) => {
   const { username, tweetId } = useParams();
 
   const user = useSelector((state) => state.profile.user);
+  const theme = useSelector((state) => state.theme);
   const myId = user.id;
   const token = user.token;
 
@@ -107,7 +108,7 @@ const Tweet = (props) => {
 
   const date = new Date(tweet["Tweets.createdAt"]);
   return (
-    <ProfileCorner>
+    <ProfileCorner border={theme.border}>
       {isModalOpen && (
         <Modal
           children={<CommentModal handleClose={handleClose} />}
@@ -124,7 +125,7 @@ const Tweet = (props) => {
             </div>
             <div>
               <Link to={`/profile/${tweet.username}`}>
-                <h3>
+                <h3 style={{ color: theme.color }}>
                   {tweet.firstname} {tweet.lastname}
                 </h3>
                 <p>@{tweet.username}</p>
@@ -132,7 +133,7 @@ const Tweet = (props) => {
             </div>
           </Flex>
           <TweetText>
-            <p>{tweet["Tweets.text"]}</p>
+            <p style={{color: theme.color}}>{tweet["Tweets.text"]}</p>
             {tweet["Tweets.media"] && isImage(tweet["Tweets.media"]) && (
               <img src={tweet["Tweets.media"]} style={{ width: "100%" }} />
             )}
@@ -143,7 +144,7 @@ const Tweet = (props) => {
                 controls
               ></video>
             )}
-            <div>
+            <div style={{color:theme.para}}>
               {date.toLocaleTimeString("en-US", {
                 hour: "numeric",
                 hour12: true,
@@ -153,7 +154,7 @@ const Tweet = (props) => {
               {date.getDate()}, {date.getFullYear()}
             </div>
           </TweetText>
-          <ActivityInfo>
+          <ActivityInfo color={theme.color}>
             <Link to={`${location.pathname}/retweets`} replace>
               <h4>{tweet["Tweets.retweetsCount"]}</h4> <span>Retweets</span>
             </Link>
@@ -171,6 +172,7 @@ const Tweet = (props) => {
                   background: "transparent",
                   outline: "none",
                 }}
+                noPadding={true}
               >
                 <ActivityIcon>
                   <Icon
@@ -199,6 +201,7 @@ const Tweet = (props) => {
                     ? "rgb(23, 191, 99)"
                     : "rgb(101, 119, 134)"
                 }
+                noPadding={true}
               />
             </div>
             <div>
@@ -212,6 +215,7 @@ const Tweet = (props) => {
                 fill={
                   tweet.selfLiked ? "rgb(224, 36, 94)" : "rgb(101, 119, 134)"
                 }
+                noPadding={true}
               />
             </div>
           </Activity>
