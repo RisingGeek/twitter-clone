@@ -31,7 +31,7 @@ export const Users = styled.div`
 export const UserFlex = styled.div`
   display: flex;
   padding: 10px 15px;
-  border-bottom: 1px solid rgb(230, 236, 240);
+  border-bottom: ${(props) => `1px solid ${props.border}`};
   img {
     width: 49px;
     height: 49px;

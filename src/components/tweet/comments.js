@@ -12,6 +12,7 @@ const Comments = () => {
   const [comments, setComments] = useState(null);
   const { tweetId } = useParams();
   const refresh = useSelector((state) => state.update.refresh);
+  const theme = useSelector((state) => state.theme);
 
   useEffect(() => {
     (async () => {
@@ -28,12 +29,12 @@ const Comments = () => {
       {comments.map((comment) => {
         const date = new Date(comment["Comments.createdAt"]);
         return (
-          <PeopleFlex hover key={comment["Comments.id"]}>
+          <PeopleFlex hover key={comment["Comments.id"]} border={theme.border}>
             <div>
               <UserImage src={comment.avatar} />
             </div>
             <div style={{ width: "100%" }}>
-              <TweetDetails>
+              <TweetDetails color={theme.color}>
                 {/* <object> to hide nested <a> warning */}
                 <object>
                   <Link to={`/profile/${comment.username}`}>
@@ -50,7 +51,7 @@ const Comments = () => {
                     date.getFullYear()}
                 </span>
               </TweetDetails>
-              <div>{comment["Comments.text"]}</div>
+              <div style={{color:theme.color}}>{comment["Comments.text"]}</div>
               {comment["Comments.media"] &&
                 isImage(comment["Comments.media"]) && (
                   <img

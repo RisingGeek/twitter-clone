@@ -80,7 +80,7 @@ const SideBar = () => {
         )}
         {whoFollow.map((user, idx) => (
           <Link to={`/profile/${user.username}`} key={user.id}>
-            <UserFlex color={theme.color}>
+            <UserFlex color={theme.color} border={theme.border}>
               <img src={user.avatar} />
               <div>
                 <h3>
