@@ -15,12 +15,12 @@ Backend Repository - [https://github.com/RisingGeek/twitter-clone-backend](https
 5. View profile
 6. Search users in explore section
 7. Add bookmarks
+8. Dark mode
 
 ## Upcoming Features
 
-1. Dark mode
-2. Notifications
-3. Live updations of like, retweet
+1. Notifications
+2. Live updations of like, retweet
 
 ## Run locally
 
