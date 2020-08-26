@@ -8,7 +8,7 @@ export const ModalWrapper = styled.div`
   width: 100%;
   height: 100%;
   padding-top: 4vh;
-  background: rgba(0, 0, 0, 0.4);
+  background: ${(props) => props.modalBg};
 `;
 
 export const ModalContent = styled.div`
@@ -28,6 +28,7 @@ export const ModalHeader = styled.div`
   padding: 13px 8px;
   border-bottom: ${(props) => `1px solid ${props.border}`};
   h2 {
+    color: ${(props) => props.color};
     margin-bottom: 0;
     font-size: 19px;
     font-weight: 800;

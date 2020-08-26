@@ -29,7 +29,7 @@ export const Header = styled.header`
 export const MenuItem = styled.div`
   ${(props) => props.logo && { display: "inline-block" }};
   margin-top: 10px;
-  color: ${props => props.color};
+  color: ${(props) => props.color};
   div {
     display: inline-block;
     padding: 10px;
@@ -40,6 +40,9 @@ export const MenuItem = styled.div`
     fill: rgba(29, 161, 242, 1);
     background: rgba(29, 161, 242, 0.1);
     border-radius: 50px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 0;
   }
 `;
 

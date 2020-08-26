@@ -52,7 +52,7 @@ const CommentModal = (props) => {
   };
 
   return (
-    <Flex>
+    <Flex bg={theme.bg} color={theme.color}>
       <div>
         <img
           src={user.avatar}

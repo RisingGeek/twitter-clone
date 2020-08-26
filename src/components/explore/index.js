@@ -44,17 +44,25 @@ const Explore = () => {
           <input
             placeholder="Search Twitter"
             value={search}
-            style={{caretColor: theme.color, color: theme.color}}
+            style={{ caretColor: theme.color, color: theme.color }}
             onChange={handleSearch}
           />
         </Search>
         {users && !users.length && (
-          <AutoComplete>
-            <h3 style={{ textAlign: "center", fontWeight: 700 }}>No results</h3>
+          <AutoComplete boxShadow={theme.boxShadow}>
+            <h3
+              style={{
+                textAlign: "center",
+                fontWeight: 700,
+                color: theme.color,
+              }}
+            >
+              No results
+            </h3>
           </AutoComplete>
         )}
         {users && users.length && (
-          <AutoComplete>
+          <AutoComplete boxShadow={theme.boxShadow}>
             {users.map((item) => (
               <Link key={item.id} to={`/profile/${item.username}`}>
                 <PeopleFlex key={item.id}>
@@ -66,7 +74,7 @@ const Explore = () => {
                       <div>
                         <object>
                           <Link to={`/profile/${item.username}`}>
-                            <h3>
+                            <h3 style={{ color: theme.color }}>
                               {item.firstname} {item.lastname}
                             </h3>
                           </Link>

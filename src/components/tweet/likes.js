@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
+import {useSelector} from 'react-redux';
 import axios from "axios";
 import Modal from "../modal";
 import { PeopleFlex, PeopleDetails, UserImage } from "../styles/profile";
@@ -8,6 +9,9 @@ const URL = process.env.REACT_APP_SERVER_URL;
 
 const Likes = () => {
   const [likes, setLikes] = useState([]);
+
+  const theme = useSelector(state => state.theme);
+
   const { username, tweetId } = useParams();
   const history = useHistory();
   useEffect(() => {
@@ -32,7 +36,7 @@ const Likes = () => {
         <div>
           {likes.map((item) => (
             <Link key={item["Likes.id"]} to={`/profile/${item.username}`}>
-              <PeopleFlex key={item.id}>
+              <PeopleFlex key={item.id} border={theme.border}>
                 <div>
                   <UserImage src={item.avatar} />
                 </div>
@@ -41,7 +45,7 @@ const Likes = () => {
                     <div>
                       <object>
                         <Link to={`/profile/${item.username}`}>
-                          <h3>
+                          <h3 style={{color: theme.color}}>
                             {item.firstname} {item.lastname}
                           </h3>
                         </Link>
@@ -55,7 +59,7 @@ const Likes = () => {
                     {/* <div>Following</div> */}
                   </PeopleDetails>
                   <div>
-                    <p>{item.bio}</p>
+                    <p style={{color: theme.color}}>{item.bio}</p>
                   </div>
                 </div>
               </PeopleFlex>

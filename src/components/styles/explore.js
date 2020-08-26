@@ -14,7 +14,7 @@ export const Search = styled.div`
     outline: none;
   }
   &:focus-within {
-    background-color: ${props => props.bg};
+    background-color: ${(props) => props.bg};
     border: 1px solid rgb(29, 161, 242);
     svg {
       fill: rgb(29, 161, 242);
@@ -25,6 +25,5 @@ export const Search = styled.div`
 export const AutoComplete = styled.div`
   max-height: 80vh;
   overflow-y: auto;
-  box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px,
-    rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
+  box-shadow: ${(props) => props.boxShadow};
 `;

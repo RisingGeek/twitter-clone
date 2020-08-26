@@ -52,6 +52,10 @@ const MenuBar = () => {
     "M17.45 22.28H3.673c-1.148 0-2.083-.946-2.083-2.11V7.926c0-1.165.934-2.112 2.082-2.112h5.836c.414 0 .75.336.75.75s-.336.75-.75.75H3.672c-.32 0-.583.274-.583.612V20.17c0 .336.26.61.582.61h13.78c.32 0 .583-.273.583-.61v-6.28c0-.415.336-.75.75-.75s.75.335.75.75v6.28c0 1.163-.934 2.11-2.084 2.11z",
     "M8.18 16.99c-.19.154-.476.032-.504-.21-.137-1.214-.234-4.053 1.483-5.943.908-1 3.02-1.52 4.475-.198s1.14 3.473.23 4.473c-2.07 2.15-3.428.058-5.686 1.878z",
   ];
+  const logout = [
+    "M349.85,62.196c-10.797-4.717-23.373,0.212-28.09,11.009c-4.717,10.797,0.212,23.373,11.009,28.09c69.412,30.324,115.228,98.977,115.228,176.035c0,106.034-85.972,192-192,192c-106.042,0-192-85.958-192-192c0-77.041,45.8-145.694,115.192-176.038c10.795-4.72,15.72-17.298,10.999-28.093c-4.72-10.795-17.298-15.72-28.093-10.999C77.306,99.275,21.331,183.181,21.331,277.329c0,129.606,105.061,234.667,234.667,234.667c129.592,0,234.667-105.068,234.667-234.667C490.665,183.159,434.667,99.249,349.85,62.196z",
+    "M255.989,234.667c11.782,0,21.333-9.551,21.333-21.333v-192C277.323,9.551,267.771,0,255.989,0c-11.782,0-21.333,9.551-21.333,21.333v192C234.656,225.115,244.207,234.667,255.989,234.667z",
+  ];
 
   const handleClose = () => {
     setIsModalOpen(false);
@@ -100,7 +104,16 @@ const MenuBar = () => {
             </NavLink>
           );
         })}
-        <MenuItem color={theme.color}>
+        <MenuItem
+          color={theme.color}
+          style={{ cursor: "pointer" }}
+          onClick={() =>
+            dispatch({
+              type: SET_THEME,
+              payload: mode === "dark" ? "default" : "dark",
+            })
+          }
+        >
           <div>
             <Icon
               d={dark}
@@ -108,29 +121,11 @@ const MenuBar = () => {
               height="26.25px"
               fill={theme.color}
             />
-            <MenuTitle
-              style={{ cursor: "pointer" }}
-              onClick={() =>
-                dispatch({
-                  type: SET_THEME,
-                  payload: mode === "dark" ? "default" : "dark",
-                })
-              }
-            >
-              {mode === "dark" ? "Light" : "Dark"} mode
-            </MenuTitle>
+            <MenuTitle>{mode === "dark" ? "Light" : "Dark"} mode</MenuTitle>
           </div>
         </MenuItem>
         <div style={{ marginBottom: "10px" }}></div>
-        {window.matchMedia("(max-width: 768px)") ? (
-          <Button
-            width="100%"
-            padding="12px 30px"
-            onClick={() => setIsModalOpen(true)}
-          >
-            Tweet
-          </Button>
-        ) : (
+        {window.matchMedia("(max-width: 768px)").matches ? (
           <Button
             width="40px"
             height="40px"
@@ -139,19 +134,41 @@ const MenuBar = () => {
           >
             +
           </Button>
+        ) : (
+          <Button
+            width="100%"
+            padding="12px 30px"
+            onClick={() => setIsModalOpen(true)}
+          >
+            Tweet
+          </Button>
         )}
-        <Button
-          width="100%"
-          padding="12px 30px"
-          style={{
-            position: "absolute",
-            left: 0,
-            bottom: "20px",
-          }}
-          onClick={handleLogout}
-        >
-          Logout
-        </Button>
+        <div style={{ marginBottom: "10px" }}></div>
+        {window.matchMedia("(max-width: 768px)").matches ? (
+          <Button width="40px" height="40px" padding="0" onClick={handleLogout}>
+            <Icon
+              d={logout}
+              viewBox="0 0 511.996 511.996"
+              width="18.75px"
+              height="18.75px"
+              fill="rgb(255,255,255)"
+            />
+            {/* logout */}
+          </Button>
+        ) : (
+          <Button
+            width="100%"
+            padding="12px 30px"
+            style={{
+              position: "absolute",
+              left: 0,
+              bottom: "20px",
+            }}
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
+        )}
       </Header>
     </React.Fragment>
   );
