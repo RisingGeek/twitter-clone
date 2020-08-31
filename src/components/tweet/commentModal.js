@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import UploadButton from "../uploadButton";
 import { Flex, Button } from "../styles/modal";
@@ -17,9 +16,7 @@ const CommentModal = (props) => {
   const theme = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
-  const { tweetId } = useParams();
-
-  const { handleClose, rows } = props;
+  const { handleClose, rows, tweetId } = props;
 
   const addComment = async () => {
     setIsCommentDisabled(true);

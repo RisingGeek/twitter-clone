@@ -15,11 +15,15 @@ import {
 import { isImage, isVideo } from "../../media";
 import Loading from "../loading";
 import Bookmark from "./bookmark";
+import Modal from "../modal";
+import CommentModal from "../tweet/commentModal";
 
 const URL = process.env.REACT_APP_SERVER_URL;
 
 const Activity = (props) => {
   const [tweets, setTweets] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [tweetId, setTweetId] = useState(null);
 
   const { username } = useParams();
   const user = useSelector((state) => state.profile.user);
@@ -76,6 +80,10 @@ const Activity = (props) => {
     ]);
   };
 
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
+
   if (!tweets) return <Loading />;
 
   if (isBookmark && !tweets.length)
@@ -96,91 +104,116 @@ const Activity = (props) => {
           : `@${username} has no ${dataKey} yet!`}
       </EmptyMsg>
     );
-  return tweets.map((tweet, idx) => {
-    const date = new Date(tweet["Tweets.createdAt"]);
-    return (
-      <Link
-        key={tweet["Tweets.id"]}
-        to={`/${tweet.username}/status/${tweet["Tweets.id"]}`}
-      >
-        <PeopleFlex hover border={theme.border} tweetHov={theme.tweetHov}>
-          <User>
-            <UserImage src={tweet.avatar} />
-          </User>
-          <div style={{ width: "80%" }}>
-            <TweetDetails color={theme.color}>
-              {/* <object> to hide nested <a> warning */}
-              <object>
-                <Link to={`/profile/${tweet.username}`}>
-                  <h3>
-                    {tweet.firstname} {tweet.lastname}
-                  </h3>
-                </Link>
-              </object>
-              <p
-                style={{
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  maxWidth: "18%",
-                }}
-              >
-                @{tweet.username}
-              </p>
-              <span>
-                {date.toLocaleString("default", { month: "short" })}{" "}
-                {date.getDate()}{" "}
-                {new Date().getFullYear() !== date.getFullYear() &&
-                  date.getFullYear()}
-              </span>
-            </TweetDetails>
-            <div style={{ color: theme.color }}>{tweet["Tweets.text"]}</div>
-            {tweet["Tweets.media"] && isImage(tweet["Tweets.media"]) && (
-              <img src={tweet["Tweets.media"]} style={{ width: "100%" }} />
-            )}
-            {tweet["Tweets.media"] && isVideo(tweet["Tweets.media"]) && (
-              <video
-                src={tweet["Tweets.media"]}
-                style={{ width: "100%" }}
-                controls
-              ></video>
-            )}
-            <TweetDetails style={{ justifyContent: "space-between" }}>
-              <Comment
-                tweets={tweets}
-                tweet={tweet}
-                idx={idx}
-                myId={myId}
-                getData={getData}
-              />
+  return (
+    <React.Fragment>
+      {isModalOpen && (
+        <Modal
+          children={
+            <CommentModal handleClose={handleClose} tweetId={tweetId} />
+          }
+          handleClose={handleClose}
+          padding="15px"
+        />
+      )}
+      {tweets.map((tweet, idx) => {
+        const date = new Date(tweet["Tweets.createdAt"]);
+        return (
+          <React.Fragment>
+            <Link
+              key={tweet["Tweets.id"]}
+              to={`/${tweet.username}/status/${tweet["Tweets.id"]}`}
+            >
+              <PeopleFlex hover border={theme.border} tweetHov={theme.tweetHov}>
+                <User>
+                  <UserImage src={tweet.avatar} />
+                </User>
+                <div style={{ width: "80%" }}>
+                  <TweetDetails color={theme.color}>
+                    {/* <object> to hide nested <a> warning */}
+                    <object>
+                      <Link to={`/profile/${tweet.username}`}>
+                        <h3>
+                          {tweet.firstname} {tweet.lastname}
+                        </h3>
+                      </Link>
+                    </object>
+                    <p
+                      style={{
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        maxWidth: "18%",
+                      }}
+                    >
+                      @{tweet.username}
+                    </p>
+                    <span>
+                      {date.toLocaleString("default", { month: "short" })}{" "}
+                      {date.getDate()}{" "}
+                      {new Date().getFullYear() !== date.getFullYear() &&
+                        date.getFullYear()}
+                    </span>
+                  </TweetDetails>
+                  <div style={{ color: theme.color }}>
+                    {tweet["Tweets.text"]}
+                  </div>
+                  {tweet["Tweets.media"] && isImage(tweet["Tweets.media"]) && (
+                    <img
+                      src={tweet["Tweets.media"]}
+                      style={{ width: "100%" }}
+                    />
+                  )}
+                  {tweet["Tweets.media"] && isVideo(tweet["Tweets.media"]) && (
+                    <video
+                      src={tweet["Tweets.media"]}
+                      style={{ width: "100%" }}
+                      controls
+                    ></video>
+                  )}
+                  <TweetDetails style={{ justifyContent: "space-between" }}>
+                    <Comment
+                      tweets={tweets}
+                      tweet={tweet}
+                      idx={idx}
+                      myId={myId}
+                      getData={getData}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setTweetId(tweet["Tweets.id"]);
+                        setIsModalOpen(true);
+                      }}
+                    />
 
-              <Retweet
-                tweets={tweets}
-                tweet={tweet}
-                idx={idx}
-                updateDetails={updateDetails}
-                myId={myId}
-                getData={getData}
-              />
-              <Like
-                tweets={tweets}
-                tweet={tweet}
-                idx={idx}
-                updateDetails={updateDetails}
-                myId={myId}
-                getData={getData}
-              />
-              <Bookmark
-                tweet={tweet}
-                myId={myId}
-                removeBookmark={removeBookmark}
-              />
-            </TweetDetails>
-          </div>
-        </PeopleFlex>
-      </Link>
-    );
-  });
+                    <Retweet
+                      tweets={tweets}
+                      tweet={tweet}
+                      idx={idx}
+                      updateDetails={updateDetails}
+                      myId={myId}
+                      getData={getData}
+                    />
+                    <Like
+                      tweets={tweets}
+                      tweet={tweet}
+                      idx={idx}
+                      updateDetails={updateDetails}
+                      myId={myId}
+                      getData={getData}
+                    />
+                    <Bookmark
+                      tweet={tweet}
+                      myId={myId}
+                      removeBookmark={removeBookmark}
+                    />
+                  </TweetDetails>
+                </div>
+              </PeopleFlex>
+            </Link>
+          </React.Fragment>
+        );
+      })}
+    </React.Fragment>
+  );
 };
 
 export default Activity;

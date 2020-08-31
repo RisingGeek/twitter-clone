@@ -27,7 +27,6 @@ const Routes = () => {
   //   dispatch({ type: "SET_THEME", payload: "dark" });
   // }, []);
   const theme = useSelector((state) => state.theme);
-  console.log(theme);
   const withMenuBar = (WrappedComponent) => (props) => (
     <React.Fragment>
       <Row style={{ background: theme.bg }}>

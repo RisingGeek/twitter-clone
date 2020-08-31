@@ -111,7 +111,9 @@ const Tweet = (props) => {
     <ProfileCorner border={theme.border}>
       {isModalOpen && (
         <Modal
-          children={<CommentModal handleClose={handleClose} />}
+          children={
+            <CommentModal handleClose={handleClose} tweetId={tweetId} />
+          }
           handleClose={handleClose}
           padding="15px"
         />
@@ -133,7 +135,7 @@ const Tweet = (props) => {
             </div>
           </Flex>
           <TweetText>
-            <p style={{color: theme.color}}>{tweet["Tweets.text"]}</p>
+            <p style={{ color: theme.color }}>{tweet["Tweets.text"]}</p>
             {tweet["Tweets.media"] && isImage(tweet["Tweets.media"]) && (
               <img src={tweet["Tweets.media"]} style={{ width: "100%" }} />
             )}
@@ -144,7 +146,7 @@ const Tweet = (props) => {
                 controls
               ></video>
             )}
-            <div style={{color:theme.para}}>
+            <div style={{ color: theme.para }}>
               {date.toLocaleTimeString("en-US", {
                 hour: "numeric",
                 hour12: true,
