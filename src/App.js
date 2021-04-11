@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import Routes from "./routes";
+import Routes from "./Routes";
 import { SET_THEME } from "./redux/actions";
 
 function App() {
