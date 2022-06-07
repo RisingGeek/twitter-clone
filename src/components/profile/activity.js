@@ -154,7 +154,7 @@ const Activity = (props) => {
                         date.getFullYear()}
                     </span>
                   </TweetDetails>
-                  <div style={{ color: theme.color }}>
+                  <div style={{ color: theme.color, wordBreak: "break-word" }}>
                     {tweet["Tweets.text"]}
                   </div>
                   {tweet["Tweets.media"] && isImage(tweet["Tweets.media"]) && (
