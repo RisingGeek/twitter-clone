@@ -47,7 +47,8 @@ module.exports = (env, argv) => {
               }).parsed
             )
             : JSON.stringify(dotenv.config().parsed),
-        "process.env.REACT_APP_SC_ATTR": JSON.stringify("data-styled-twitter-clone")
+        "process.env.REACT_APP_SC_ATTR": JSON.stringify("data-styled-twitter-clone"),
+        "process.env.REACT_APP_SC_DISABLE_SPEEDY": "true"
       }),
     ],
   };
