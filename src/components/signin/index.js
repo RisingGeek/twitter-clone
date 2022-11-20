@@ -33,7 +33,6 @@ const SignIn = (props) => {
   const handleSubmit = async (data) => {
     try {
       setLoginDisabled(true);
-      console.log(URL)
       const login = await axios.post(`${URL}/user/login-user`, data);
       setCredentialError({ user: null, password: null });
       setLoginDisabled(false);

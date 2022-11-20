@@ -1,7 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { DefinePlugin } = require("webpack");
 const path = require("path");
-const dotenv = require("dotenv");
 const DotenvWebpackPlugin = require("dotenv-webpack");
 
 module.exports = (env, argv) => {
