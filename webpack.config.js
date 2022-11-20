@@ -2,6 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { DefinePlugin } = require("webpack");
 const path = require("path");
 const dotenv = require("dotenv");
+const DotenvWebpackPlugin = require("dotenv-webpack");
 
 module.exports = (env, argv) => {
   return {
@@ -38,18 +39,7 @@ module.exports = (env, argv) => {
         template: path.resolve(__dirname, "public/index.html"),
         filename: "index.html",
       }),
-      new DefinePlugin({
-        "process.env":
-          argv.mode === "development"
-            ? JSON.stringify(
-              dotenv.config({
-                path: path.resolve(__dirname, "./.env.development"),
-              }).parsed
-            )
-            : JSON.stringify(dotenv.config().parsed),
-        "process.env.REACT_APP_SC_ATTR": JSON.stringify("data-styled-twitter-clone"),
-        "process.env.REACT_APP_SC_DISABLE_SPEEDY": "true"
-      }),
+      new DotenvWebpackPlugin()
     ],
   };
 };
