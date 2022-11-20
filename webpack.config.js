@@ -42,11 +42,12 @@ module.exports = (env, argv) => {
         "process.env":
           argv.mode === "development"
             ? JSON.stringify(
-                dotenv.config({
-                  path: path.resolve(__dirname, "./.env.development"),
-                }).parsed
-              )
+              dotenv.config({
+                path: path.resolve(__dirname, "./.env.development"),
+              }).parsed
+            )
             : JSON.stringify(dotenv.config().parsed),
+        "process.env.REACT_APP_SC_ATTR": JSON.stringify("data-styled-twitter-clone")
       }),
     ],
   };
