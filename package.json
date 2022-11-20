@@ -4,6 +4,7 @@
   "description": "Twitter clone frontend",
   "scripts": {
     "webpack-dev-server": "webpack-dev-server",
+    "dev": "webpack-dev-server --mode=development",
     "start": "webpack-dev-server --mode=development",
     "build": "webpack"
   },
