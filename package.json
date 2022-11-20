@@ -5,7 +5,7 @@
   "scripts": {
     "webpack-dev-server": "webpack-dev-server",
     "dev": "webpack-dev-server --mode=development",
-    "start": "webpack-dev-server --mode=development",
+    "start": "webpack-dev-server",
     "build": "webpack"
   },
   "keywords": [],
