@@ -24,12 +24,13 @@ Backend Repository - [https://github.com/RisingGeek/twitter-clone-backend](https
 
 ## Run locally
 
-- Create a .env.development file with the following contents:
+- Create a .env file with the following contents:
 
 ```javascript
     REACT_APP_SERVER_URL=http://localhost:5000
     REACT_APP_SECRET_KEY=<YOUR_SECRET_KEY>
 ```
+Note: You need to also setup the backend repository for APIs to work
 
 - `npm install && npm start`
 
