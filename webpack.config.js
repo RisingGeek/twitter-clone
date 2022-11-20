@@ -39,7 +39,9 @@ module.exports = (env, argv) => {
         template: path.resolve(__dirname, "public/index.html"),
         filename: "index.html",
       }),
-      new DotenvWebpackPlugin()
+      new DotenvWebpackPlugin({
+        systemvars: true
+      })
     ],
   };
 };
