@@ -2,6 +2,7 @@
   "name": "twitter-clone",
   "version": "1.0.0",
   "description": "Twitter clone frontend",
+  "homepage": "https://twitter-clone-nu-seven.vercel.app",
   "scripts": {
     "webpack-dev-server": "webpack-dev-server",
     "dev": "webpack-dev-server --mode=development",
