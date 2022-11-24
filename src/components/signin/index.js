@@ -97,6 +97,7 @@ const SignIn = (props) => {
                 transform: "translate(-50%,-50%)",
               }}
             >
+              <h1>Twitter Clone</h1>
               {motto.map((item) => (
                 <Motto key={item.text}>
                   <Icon
@@ -125,8 +126,9 @@ const SignIn = (props) => {
                 height="41.25px"
                 fill="rgb(29,161,242)"
               />
-              <h1>See what's happening in the world right now</h1>
-              <p>Join twitter today.</p>
+              <h1>Twitter Clone</h1>
+              <h2>See what's happening in the world right now</h2>
+              <p>Join twitter clone today.</p>
               <Button
                 bg="rgb(29,160,240)"
                 color="rgb(255,255,255)"
